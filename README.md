@@ -1,5 +1,6 @@
 ### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
 https://github.com/Elensmith/middle.messenger.praktikum.yandex/pull/1
+zealous-mclean-2f46ae
 
 ### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main. 
 ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).
