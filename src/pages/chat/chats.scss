@@ -1,0 +1,18 @@
+@import '../../../main.scss';
+
+.chats {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+
+  .messages-container {
+    width: 25%;
+    box-shadow: $box_shadow;
+    border-radius: $border_radius;
+  }
+  .chat {
+    display: flex;
+    text-align: center;
+    margin: auto;
+  }
+}

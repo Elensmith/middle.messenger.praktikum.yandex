@@ -1,0 +1,24 @@
+@import '../../../main.scss';
+
+.settings {
+  display: flex;
+  flex-direction: row;
+
+  .user-form {
+    display: flex;
+    flex-direction: column;
+    width: 40vh;
+    margin: auto;
+  }
+  .avatar {
+    height: 80px;
+    width: 80px;
+    background-color: #bbb;
+    margin: auto;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .user-name {
+    margin: 20px auto;
+  }
+}
