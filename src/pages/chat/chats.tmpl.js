@@ -1,8 +1,7 @@
 import './chats.scss'
 import Input from '../../components/input/index'
 import Button from '../../components/button/index'
-// import dataForChats from './dataForChats'
-// console.log(dataForChats)
+
 export default `
   <main class="chats">
     <div class="messages-container">
