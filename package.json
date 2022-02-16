@@ -4,8 +4,9 @@
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel index.html",
-    "build": "parcel build index.html"
+    "dev": "parcel index.html --port 3000",
+    "build": "parcel build index.html",
+    "start": "parcel index.html --port 3000"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,9 @@
     "parcel": "^2.3.1",
     "prettier": "2.5.1"
   },
-  "engine": "node - v14.18.3",
+  "engines": {
+    "node": "v14.18.3"
+  },
   "dependencies": {
     "express": "^4.17.2",
     "handlebars": "^4.7.7",
