@@ -1,6 +1,6 @@
 ###  вот ссылка на пулл реквест - https://github.com/Elensmith/middle.messenger.praktikum.yandex/pull/1
 
-### вот в netlify - zealous-mclean-2f46ae 
+### вот netlify
 https://compassionate-sinoussi-47254c.netlify.app/
 
 ### макет в фигме
