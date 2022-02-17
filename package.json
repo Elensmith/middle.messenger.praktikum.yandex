@@ -2,10 +2,9 @@
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
-  "main": "index.js",
   "scripts": {
     "dev": "parcel index.html --port 3000",
-    "build": "parcel build index.html",
+    "build": "node --max-old-space-size=4096 ./node_modules/.bin/parcel build index.html",
     "start": "npm run build && node app.js"
   },
   "repository": {
