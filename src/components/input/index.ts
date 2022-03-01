@@ -1,7 +1,7 @@
-import Handlebars from 'handlebars'
+import * as Handlebars from 'handlebars'
 import tmpl from './input.tmpl'
 
 const template = Handlebars.compile(tmpl)
-const makeTemp = (data) => template(data)
+const makeTemp = (data: object) => template(data)
 
 export default makeTemp

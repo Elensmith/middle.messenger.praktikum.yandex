@@ -1,5 +1,5 @@
 import './settings.scss'
-import Button from '../../components/button/index'
+import Button from '../../components/button/button'
 import Input from '../../components/input/index'
 
 export default `

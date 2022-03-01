@@ -1,6 +1,6 @@
 import '../auth.scss'
 import Input from '../../../components/input/index'
-import Button from '../../../components/button/index'
+import Button from '../../../components/button/button'
 
 export default `
   <div class="form">
