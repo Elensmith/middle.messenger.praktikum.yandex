@@ -1,23 +1,72 @@
-import Button from './components/button/button'
+import Button from './components/button/index'
+import Input from './components/input/index'
 import ErrorPage from './pages/error/index'
+import ChatPage from './pages/chat'
+import SignupPage from './pages/auth/signup'
+import SettingsPage from './pages/settings'
+import SigninPage from './pages/auth/signin'
 import renderDOM from './components/utils/renderDOM'
+import dictPattern from './components/utils/validationDict'
 import registerComponent from './components/utils/registerComponent'
-registerComponent(Button)
-document.addEventListener('DOMContentLoaded', () => {
-  // registerComponent(ErrorPage)
-  const errorPage = new ErrorPage({
-    errorCode: 404,
-    errorText: 'Ошибочка вышла',
-  })
-  // registerComponent(Button)
-  // const errorPage = new Button({
-  //   title: 'ddddddd',
-  //   events: {
-  //     click: () => console.log('eeeeee'),
-  //   },
-  // })
+import user from './pages/settings/userData'
 
-  renderDOM('#root', errorPage)
+registerComponent(Button)
+registerComponent(Input)
+
+document.addEventListener('DOMContentLoaded', () => {
+  // const errorPage = new ErrorPage({
+  //   errorCode: 404,
+  //   errorText: 'Ошибочка вышла',
+  // })
+  // renderDOM('#root', errorPage)
+  // const chatPage = new ChatPage()
+  // renderDOM('#root', chatPage)
+
+  function submitFunc(event) {
+    event.preventDefault()
+
+    const objectData = {}
+
+    const form = document.querySelector('form')
+    const inputBlock = form!.querySelectorAll('.input')
+
+    inputBlock.forEach((i) => {
+      const input = i.querySelector('input')
+
+      i.querySelector('.error').textContent = ''
+      const currInput = dictPattern[input.name]
+      const testInput = currInput.regexp.test(input!.value)
+
+      if (!testInput) {
+        i.querySelector('.error').textContent = currInput.errorText
+      } else {
+        objectData[input.name] = input.value
+      }
+
+      console.log(objectData, 'objectData')
+    })
+  }
+  function authBtnFunc() {
+    console.log('authBtn')
+  }
+  const signupPage = new SignupPage({
+    submitBtn: submitFunc,
+    authBtn: authBtnFunc,
+  })
+  renderDOM('#root', signupPage)
+
+  // const settingsPage = new SettingsPage({
+  //   user,
+  //   userName: 'Иван',
+  //   isNotEditable: true,
+  // })
+  // renderDOM('#root', settingsPage)
+
+  //  const errorPage = new ErrorPage({
+  //     errorCode: 404,
+  //     errorText: 'Ошибочка вышла',
+  //   })
+  //   renderDOM('#root', errorPage)
   // setTimeout(() => {
   //   errorPage.setProps({
   //     errorCode: 500,

@@ -1,22 +1,9 @@
-import * as Handlebars from 'handlebars'
+import Block from '../../../components/utils/Block'
 import tmpl from './signin.tmpl'
 
-const template = Handlebars.compile(tmpl)
-function renderSignin(e: HTMLElement, router: (a: string) => void) {
-  e.innerHTML = template({})
-
-  const signupBtn: HTMLElement | null = document.getElementById('signupBtn')
-  if (signupBtn !== null) {
-    signupBtn.addEventListener('click', () => {
-      router('signup')
-    })
-  }
-
-  const signinBtn: HTMLElement | null = document.getElementById('signinBtn')
-  if (signinBtn !== null) {
-    signinBtn.addEventListener('click', () => {
-      router('chats')
-    })
+// interface ChatProps {}
+export default class SigninPage extends Block {
+  render() {
+    return tmpl
   }
 }
-export default renderSignin

@@ -8,6 +8,9 @@
   margin-top: 20px;
   cursor: pointer;
 }
+.button_disabled {
+  background: 'grey';
+}
 .button_small {
   background: transparent;
   color: $color_blue;

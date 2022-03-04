@@ -1,16 +1,9 @@
-import * as Handlebars from 'handlebars'
+import Block from '../../components/utils/Block'
 import tmpl from './chats.tmpl'
 
-const template = Handlebars.compile(tmpl)
-function renderChats(e: HTMLElement, router: (a: string) => void) {
-  e.innerHTML = template({})
-
-  const settingsBtn: HTMLElement | null = document.getElementById('settingsBtn')
-  if (settingsBtn !== null) {
-    settingsBtn.addEventListener('click', () => {
-      router('settings')
-    })
+// interface ChatProps {}
+export default class ChatPage extends Block {
+  render() {
+    return tmpl
   }
 }
-
-export default renderChats

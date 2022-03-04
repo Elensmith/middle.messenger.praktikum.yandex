@@ -1,11 +1,7 @@
-// eslint-disable-next-line import/extensions
 import { nanoid } from 'nanoid'
 import * as Handlebars from 'handlebars'
 import EventBus from './EventBus'
 
-interface BlockMeta<P = any> {
-  props: P
-}
 export default class Block {
   private static EVENTS = {
     INIT: 'init',
@@ -52,14 +48,14 @@ export default class Block {
   }
 
   init() {
-    console.log(this, 'init')
     this.eventBus().emit(Block.EVENTS.FLOW_CDM)
   }
 
-  initChildren() {}
+  initChildren() {
+    console.log('dddd')
+  }
 
   private _componentDidMount() {
-    console.log('_componentDidMount')
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
   }
 
@@ -73,7 +69,6 @@ export default class Block {
   }
 
   // Может переопределять пользователь, необязательно трогать
-  // eslint-disable-next-line class-methods-use-this
   componentDidUpdate(oldProps: string, newProps: string) {
     console.log(oldProps, newProps)
     return true
@@ -117,20 +112,6 @@ export default class Block {
   }
 
   private _render() {
-    // const templateString = this.render()
-    // const fragment = this.compile(templateString, { ...this.props })
-    // console.log(fragment, ' fragment')
-    // const newElement = fragment.firstElementChild
-    // console.log(newElement, ' newElement')
-    // if (!this._element) {
-    //   this._removeEvents()
-    //   // this._element!.replaceWith(newElement)
-    // }
-
-    // this._element = newElement
-    // this._addEvents()
-    // console.log(this._element, ' this._element _render')
-    // return this._element
     const fragment = this.compile()
 
     this._removeEvents()
@@ -142,7 +123,6 @@ export default class Block {
   }
 
   // Может переопределять пользователь, необязательно трогать
-  // eslint-disable-next-line class-methods-use-this
   protected render(): string {
     return ''
   }
@@ -157,12 +137,12 @@ export default class Block {
       return
     }
     Object.entries(events).forEach(([event, listener]) => {
-      this._element!.removeEventListener((event, listener))
+      this._element.removeEventListener((event, listener))
     })
   }
 
-  private _makePropsProxy(props: {}) {
-    const self = this
+  private _makePropsProxy(props: any = {}) {
+    // const self = this
     return new Proxy(props, {
       get(target, prop: string) {
         const value = target[prop]
@@ -173,7 +153,7 @@ export default class Block {
         console.log('перехватываем запись свойства')
         const oldProps = { ...target }
         target[prop] = val
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target)
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target)
         return true
       },
       deleteProperty() {
@@ -202,7 +182,7 @@ export default class Block {
       if (typeof listener === 'function') {
         console.log(event, 'event')
         console.log(listener, 'listener')
-        this._element!.addEventListener(event, listener)
+        this._element.addEventListener(event, listener)
         console.log(this._element, 'this._element _addEvents')
       }
     })

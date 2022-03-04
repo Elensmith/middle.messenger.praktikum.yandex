@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/extensions
 import Block from './Block'
 
 export default function renderDOM(rootSelector: string, component: Block) {

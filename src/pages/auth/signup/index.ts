@@ -1,23 +1,34 @@
-import * as Handlebars from 'handlebars'
-import signinTemplate from './signup.tmpl'
+import Block from '../../../components/utils/Block'
+import tmpl from './signup.tmpl'
 
-const template = Handlebars.compile(signinTemplate)
-
-function renderSignup(e: HTMLElement, router: (a: string) => void) {
-  e.innerHTML = template({})
-
-  const signinBtn: HTMLElement | null = document.getElementById('signinBtn')
-  if (signinBtn !== null) {
-    signinBtn.addEventListener('click', () => {
-      router('signin')
-    })
-  }
-
-  const signupBtn: HTMLElement | null = document.getElementById('signupBtn')
-  if (signupBtn !== null) {
-    signupBtn.addEventListener('click', () => {
-      router('chats')
-    })
-  }
+interface ChatProps {
+  submitBtn: () => void
+  authBtn: () => void
 }
-export default renderSignup
+export default class SignupPage extends Block {
+  constructor({ submitBtn, authBtn }: ChatProps) {
+    super({ submitBtn, authBtn })
+    // this.loadPage()
+  }
+
+  render() {
+    return tmpl
+  }
+
+  // loadPage() {
+  //   const timer = setInterval(() => {
+  //     if (document.querySelector('form') !== null) {
+  //       this.submitFunc()
+  //       clearInterval(timer)
+  //     }
+  //   }, 10)
+  // }
+
+  // submitFunc() {
+  //   console.log('submitFunc')
+  //   const form = document.querySelector('form')
+  //   const formSubmit = document.querySelectorAll('button.button_large')
+  //   formSubmit[0].disabled = true
+  //   formSubmit[0].className = 'button button_larg button_disabled'
+  // }
+}
