@@ -3,16 +3,17 @@
 ## Запуск:
 
 - npm run build - сборка
-- npm run dev -  запуск в режиме разработки
+- npm run dev - запуск в режиме разработки
 - npm run start -- запуск в режиме разработки
 
 ## Как работает:
 
-- пока статичные html страницы - есть слушатели на кнопках
+- добавлена валидация для регистрации и авторизации, положено начало для страницы с чатами, добавлены классы и тайпскрипт, можно пройти по страницам ошибка-регистрация(авторизация) - страница с чатами - профиль
 
-###  вот ссылка на пулл реквест (она была в readme в main) - https://github.com/Elensmith/middle.messenger.praktikum.yandex/pull/1
-### вот в netlify - zealous-mclean-2f46ae 
-https://app.netlify.com/sites/zealous-mclean-2f46ae/deploys/620d63463de82c8359be16bb 
+### вот ссылка на пулл реквест -
+
+### вот в netlify - zealous-mclean-2f46ae
 
 ### макет в фигме
+
 https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1

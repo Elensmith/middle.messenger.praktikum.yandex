@@ -28,7 +28,6 @@ export default class Block {
    * @returns {void}
    */
   constructor(props: any = {}) {
-    console.log(props, 'props')
     const eventBus = new EventBus()
     this._meta = {
       props,
@@ -51,16 +50,13 @@ export default class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM)
   }
 
-  initChildren() {
-    console.log('dddd')
-  }
+  initChildren() {}
 
   private _componentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
   }
 
   private _componentDidUpdate(oldProps: string, newProps: string) {
-    console.log(oldProps, newProps)
     const response = this.componentDidUpdate(oldProps, newProps)
     if (!response) {
       return
@@ -70,7 +66,6 @@ export default class Block {
 
   // Может переопределять пользователь, необязательно трогать
   componentDidUpdate(oldProps: string, newProps: string) {
-    console.log(oldProps, newProps)
     return true
   }
 
@@ -87,18 +82,14 @@ export default class Block {
       'template'
     ) as HTMLTemplateElement
     const template = Handlebars.compile(this.render())
-    console.log(this.children, ' this.children')
     const htmlString = template({ ...this.props, children: this.children })
 
     fragment.innerHTML = htmlString
-    console.log(htmlString, 'ffffff')
 
     Object.entries(this.children).forEach(([key, component]) => {
       const stub = fragment.content.querySelector(
         `[data-id="id-${component.id}"]`
       )
-      console.log(stub, 'sssss')
-      console.log(component.id, 'id ')
       if (!stub) {
         return
       }
@@ -146,10 +137,9 @@ export default class Block {
     return new Proxy(props, {
       get(target, prop: string) {
         const value = target[prop]
-        return typeof value === 'function' ? value.bind(target) : value // (*)
+        return typeof value === 'function' ? value.bind(target) : value
       },
       set(target, prop: string, val) {
-        // перехватываем запись свойства
         console.log('перехватываем запись свойства')
         const oldProps = { ...target }
         target[prop] = val
@@ -159,31 +149,22 @@ export default class Block {
       deleteProperty() {
         throw new Error('Нет доступа')
       },
-      // ownKeys(target) {
-      //   // перехватываем попытку итерации
-      //   return Object.keys(target).filter((key) => !key[0].includes('_'))
-      // },
     })
   }
 
   // eslint-disable-next-line class-methods-use-this
   private _createDocumentElement(tagName: string) {
-    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName)
   }
 
   _addEvents() {
     const { events } = this.props as any
-    console.log(this.props, 'events')
     if (!events) {
       return
     }
     Object.entries(events).forEach(([event, listener]) => {
       if (typeof listener === 'function') {
-        console.log(event, 'event')
-        console.log(listener, 'listener')
         this._element.addEventListener(event, listener)
-        console.log(this._element, 'this._element _addEvents')
       }
     })
   }

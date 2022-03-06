@@ -6,8 +6,8 @@ interface ChatProps {
   authBtn: () => void
 }
 export default class SignupPage extends Block {
-  constructor({ submitBtn, authBtn }: ChatProps) {
-    super({ submitBtn, authBtn })
+  constructor({ ...props }: ChatProps) {
+    super(props)
     // this.loadPage()
   }
 

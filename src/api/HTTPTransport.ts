@@ -20,19 +20,19 @@ const METHODS = {
 }
 
 class HTTPTransport {
-  get = (url, options = {}) =>
+  get = (url: string, options = {}) =>
     this.request(url, { ...options, method: METHODS.GET })
 
-  put = (url, options = {}) =>
+  put = (url: string, options = {}) =>
     this.request(url, { ...options, method: METHODS.PUT })
 
-  post = (url, options = {}) =>
+  post = (url: string, options = {}) =>
     this.request(url, { ...options, method: METHODS.POST })
 
-  delete = (url, options = {}) =>
+  delete = (url: string, options = {}) =>
     this.request(url, { ...options, method: METHODS.DELETE })
 
-  setParams = (url, data) => {
+  setParams = (url: string, data: any) => {
     if (data) {
       return `${url}${this.queryStringify(data)}`
     }

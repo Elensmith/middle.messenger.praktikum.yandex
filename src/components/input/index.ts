@@ -9,7 +9,10 @@ interface InputProps {
   type?: string
   pattern?: RegExp
   valueData?: string
+  placeholder: string
   error?: string
+  onBlur?: () => void
+  onFocus?: () => void
   // events?: {
   //   click?: () => void
   // }

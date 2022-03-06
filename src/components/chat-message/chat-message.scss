@@ -1,0 +1,43 @@
+@import '../../../main.scss';
+
+.chat-message {
+  max-width: 35vw;
+  width: fit-content;
+  background-color: lightgrey;
+  border-radius: $border_radius;
+  padding: 10px;
+  margin: 10px;
+  position: relative;
+
+  .arrived-time {
+    position: absolute;
+    color: white;
+    bottom: 5%;
+    right: 5%;
+    font-size: 10px;
+  }
+  .message-image {
+    width: 100%;
+    border-radius: $border_radius;
+  }
+}
+.chat-message_right {
+  max-width: 35vw;
+  width: fit-content;
+  background-color: teal;
+  border-radius: $border_radius;
+  padding: 10px;
+  margin: 10px;
+  position: relative;
+  .arrived-time {
+    position: absolute;
+    color: white;
+    bottom: 5%;
+    right: 5%;
+    font-size: 10px;
+  }
+  .message-image {
+    width: 100%;
+    border-radius: $border_radius;
+  }
+}
