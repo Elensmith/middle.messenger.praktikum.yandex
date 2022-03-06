@@ -4,7 +4,7 @@
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
   "scripts": {
     "dev": "parcel index.html --port 3033",
-    "build": "node --max-old-space-size=4096 ./node_modules/.bin/parcel build index.html",
+    "build": "parcel build index.html",
     "start": "npm run build && node app.js",
     "lint": "eslint --fix --ext .js,.ts src"
   },
