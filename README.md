@@ -1,11 +1,18 @@
-###  вот ссылка на пулл реквест - https://github.com/Elensmith/middle.messenger.praktikum.yandex/pull/1
+Веб-приложение Чат
+Запуск:
+npm run build - сборка
+npm run dev - запуск в режиме разработки
+npm run start -- запуск в режиме разработки
+Как работает:
+добавлена валидация для регистрации и авторизации, положено начало для страницы с чатами, добавлены классы и тайпскрипт, можно пройти по страницам ошибка-регистрация(авторизация) - страница с чатами - профиль
+вот ссылка на пулл реквест -
+https://github.com/Elensmith/middle.messenger.praktikum.yandex/pull/2
 
-### вот netlify
-https://compassionate-sinoussi-47254c.netlify.app/
+netlify
+https://peaceful-perlman-71ed18.netlify.app/
 
-### макет в фигме
+макет в фигме
 https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1
-
 
 ### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
 ### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main. 
