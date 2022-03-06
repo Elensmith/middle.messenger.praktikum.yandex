@@ -8,12 +8,12 @@ export default `
     {{#if isNotEditable}}
     <h3 class="user-name">{{userName}}</h3>
     {{/if}}
-    {{{Input labelText="Почта" classInput="input_main" valueData="useremail@yandex.ru" type="text" readonly="true"}}}
-    {{{Input labelText="Логин" classInput="input_main" valueData="ivanlogin" type="text" readonly="true"}}}
-    {{{Input labelText="Имя" classInput="input_main" valueData="Иван" type="text" readonly="true"}}}
-    {{{Input labelText="Фамилия" classInput="input_main" valueData="Иванов" type="text" readonly="true"}}}
-    {{{Input labelText="Имя пользователя" classInput="input_main" valueData="Иван" type="text" readonly="true"}}}
-    {{{Input labelText="Телефон" classInput="input_main" valueData="+7(123)1567890" type="text" readonly="true"}}}
+    {{{Input labelText="Почта" classInput="input_main" valueData="useremail@yandex.ru" typeName="text" readonly="true"}}}
+    {{{Input labelText="Логин" classInput="input_main" valueData="ivanlogin" typeName="text" readonly="true"}}}
+    {{{Input labelText="Имя" classInput="input_main" valueData="Иван" typeName="text" readonly="true"}}}
+    {{{Input labelText="Фамилия" classInput="input_main" valueData="Иванов" typeName="text" readonly="true"}}}
+    {{{Input labelText="Имя пользователя" classInput="input_main" valueData="Иван" typeName="text" readonly="true"}}}
+    {{{Input labelText="Телефон" classInput="input_main" valueData="+7(123)1567890" typeName="text" readonly="true"}}}
     {{#if isNotEditable}}
     {{{ Button title="Изменить данные" className="button_small" onClick=onClick }}}
     {{{ Button title="Изменить пароль" className="button_small" onClick=onClick }}}
