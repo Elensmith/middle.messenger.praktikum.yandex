@@ -14,7 +14,8 @@
 
 https://github.com/Elensmith/middle.messenger.praktikum.yandex/pull/2
 
-### вот в netlify - zealous-mclean-2f46ae
+### netlify 
+https://peaceful-perlman-71ed18.netlify.app/
 
 ### макет в фигме
 
