@@ -12,10 +12,10 @@ import registerComponent from './components/utils/registerComponent'
 // import user from './pages/settings/userData'
 import Validation from './components/utils/Validation'
 
-registerComponent(Button)
-registerComponent(Input)
-registerComponent(Chat)
-registerComponent(ChatMessage)
+registerComponent(Button, 'Button')
+registerComponent(Input, 'Input')
+registerComponent(Chat, 'Chat')
+registerComponent(ChatMessage, 'ChatMessage')
 
 const validate = new Validation()
 
@@ -27,13 +27,7 @@ function router(page: string) {
   renderDOM('#root', readyPage)
   validate.activate()
 }
-function submitFunc(event: PointerEvent) {
-  event.preventDefault()
-  const isValid = validate.submit()
-  if (isValid) {
-    router('chatPage')
-  }
-}
+
 // function addMessage() {
 //   const isValid = validate.submit()
 //   if (isValid) {
@@ -107,7 +101,13 @@ const dictPages: any = {
     },
   },
 }
-
+function submitFunc(event: PointerEvent) {
+  event.preventDefault()
+  const isValid = validate.submit()
+  if (isValid) {
+    router('chatPage')
+  }
+}
 document.addEventListener('DOMContentLoaded', () => {
   router('signinPage')
 })
