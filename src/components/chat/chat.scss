@@ -1,0 +1,64 @@
+@import '../../../main.scss';
+
+.chat {
+  display: flex;
+  flex-direction: row;
+  height: 80px;
+  border-top: 1px solid grey;
+
+  .box {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .title {
+    margin: 6px 0;
+    font-size: 16px;
+  }
+  .new-messages_no-display {
+    display: none;
+  }
+  .new-messages {
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    background-color: lightslategray;
+    text-align: center;
+  }
+  .message {
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .box-message {
+    padding: 10px;
+    width: 65%;
+  }
+  .box-time {
+    justify-content: space-around;
+    align-items: center;
+  }
+  .message-arrival-time {
+    font-size: 12px;
+  }
+  .message-from-user {
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .new-messages-text {
+    font-size: 12px;
+    margin: 3px 0;
+    color: white;
+  }
+  .avatar {
+    height: 40px;
+    width: 40px;
+    background-color: #bbb;
+    margin: auto;
+    border-radius: 50%;
+    display: inline-block;
+  }
+}

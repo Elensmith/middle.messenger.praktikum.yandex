@@ -1,0 +1,15 @@
+@import '../../../main.scss';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  margin: auto;
+  padding: 15px;
+  box-shadow: $box_shadow;
+  border-radius: $border_radius;
+
+  .header {
+    margin: 5% auto;
+  }
+}
