@@ -1,9 +1,10 @@
 import './chats.scss'
+// import ''
 
 export default `
   <main class="chats">
     <div class="messages-container">
-    {{{Button title="Профиль" className="button_back-to-profile" onClick=onClick }}}
+    {{{Button title="Профиль" className="button_back-to-profile" onClick=goToSettings }}}
     {{{Input placeholderInfo="Поиск" classInput="input_search" type="text" inputName="search-message"}}}
     {{{Chat avatar="https://farm5.staticflickr.com/4630/40154768462_b54bd2f94b_o.jpg" userName="Anna" userAuthor="" message="по поводу завтра, слушай, наверно не смогу, вообще еще уточню, напишу ближе к делу или как буду пряяям точно знать" messageArrivalTime="10:50" }}}
     {{{Chat avatar="https://kulturakumertau.ru/wp-content/uploads/3/f/4/3f47f7753e4c02145f5b3c66983ee127.jpeg" userName="Ira" userAuthor="Вы: " message="Ну так вот короче, как будет время пиши, лады? у меня есть что рассказать, рили))" messageArrivalTime="10:50" newMessages="1" }}}

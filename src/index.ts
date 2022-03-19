@@ -7,26 +7,11 @@ import ChatPage from './pages/chats'
 import SignupPage from './pages/auth/signup'
 import SettingsPage from './pages/settings'
 import SigninPage from './pages/auth/signin'
-import renderDOM from './components/utils/renderDOM'
-import registerComponent from './components/utils/registerComponent'
+import registerComponent from './utils/registerComponent'
 // import user from './pages/settings/userData'
-import Validation from './components/utils/Validation'
-
-registerComponent(Button, 'Button')
-registerComponent(Input, 'Input')
-registerComponent(Chat, 'Chat')
-registerComponent(ChatMessage, 'ChatMessage')
-
-const validate = new Validation()
-
-function router(page: string) {
-  // eslint-disable-next-line no-use-before-define
-  const PageInDict = dictPages[page].type
-  // eslint-disable-next-line no-use-before-define
-  const readyPage = new PageInDict({ ...dictPages[page].props })
-  renderDOM('#root', readyPage)
-  validate.activate()
-}
+import Validation from './utils/Validation'
+import Router from './utils/Router'
+import AuthController from './controllers/AuthController'
 
 // function addMessage() {
 //   const isValid = validate.submit()
@@ -37,77 +22,87 @@ function router(page: string) {
 //   }
 // }
 
-const dictPages: any = {
-  chatPage: {
-    type: ChatPage,
-    props: {
-      avatar: 'string',
-      userName: 'string',
-      userAuthor: 'string',
-      message: 'string',
-      messageArrivalTime: 'string',
-      newMessages: 11,
-      selectedUserName: 'Ira',
-      selectedUserAvatar:
-        'https://kulturakumertau.ru/wp-content/uploads/3/f/4/3f47f7753e4c02145f5b3c66983ee127.jpeg',
-      onClick: () => {
-        router('settingsPage')
-      },
-      // sendMessage: () => {
-      //   addMessage()
-      // },
-    },
-  },
-  errorPage: {
-    type: ErrorPage,
-    props: {
-      errorCode: 404,
-      errorText: 'Ошибочка вышла',
-      onClick: () => {
-        router('chatPage')
-      },
-    },
-  },
-  signupPage: {
-    type: SignupPage,
-    props: {
-      submitBtn: submitFunc,
-      authBtn: () => {
-        router('signinPage')
-      },
-    },
-  },
-  signinPage: {
-    type: SigninPage,
-    props: {
-      login: () => {
-        router('signupPage')
-      },
-      onClick: submitFunc,
-    },
-  },
-  settingsPage: {
-    type: SettingsPage,
-    props: {
-      // user,
-      userName: 'Иван',
-      isNotEditable: true,
-      logout: () => {
-        router('signupPage')
-      },
-      backToChat: () => {
-        router('chatPage')
-      },
-    },
-  },
-}
-function submitFunc(event: PointerEvent) {
-  event.preventDefault()
-  const isValid = validate.submit()
-  if (isValid) {
-    router('chatPage')
+// const dictPages: any = {
+//   chatPage: {
+//     type: ChatPage,
+//     props: {
+//       // avatar: 'string',
+//       // userName: 'string',
+//       // userAuthor: 'string',
+//       // message: 'string',
+//       // messageArrivalTime: 'string',
+//       // newMessages: 11,
+//       // selectedUserName: 'Ira',
+//       // selectedUserAvatar:
+//       //   'https://kulturakumertau.ru/wp-content/uploads/3/f/4/3f47f7753e4c02145f5b3c66983ee127.jpeg',
+//       onClick: () => {
+//         router('settingsPage')
+//       },
+//       // sendMessage: () => {
+//       //   addMessage()
+//       // },
+//     },
+//   },
+//   signupPage: {
+//     type: SignupPage,
+//     props: {
+//       submitBtn: submitFunc,
+//       authBtn: () => {
+//         router('signinPage')
+//       },
+//     },
+//   },
+//   signinPage: {
+//     type: SigninPage,
+//     props: {
+//       login: () => {
+//         router('signupPage')
+//       },
+//       onClick: submitFunc,
+//     },
+//   },
+//   settingsPage: {
+//     type: SettingsPage,
+//     props: {
+//       // user,
+//       userName: 'Иван',
+//       isNotEditable: true,
+//       logout: () => {
+//         router('signupPage')
+//       },
+//       backToChat: () => {
+//         router('chatPage')
+//       },
+//     },
+//   },
+// }
+// function submitFunc(event: PointerEvent) {
+//   event.preventDefault()
+//   const isValid = validate.submit()
+//   if (isValid) {
+//     router('chatPage')
+//   }
+// }
+document.addEventListener('DOMContentLoaded', async () => {
+  registerComponent(Button, 'Button')
+  registerComponent(Input, 'Input')
+  registerComponent(Chat, 'Chat')
+  registerComponent(ChatMessage, 'ChatMessage')
+
+  try {
+    await AuthController.getUserInfo()
+    // Router.go('/messenger')
+  } catch (e) {
+    console.log(e, 'error getUserInfo')
+    Router.go('/signin')
   }
-}
-document.addEventListener('DOMContentLoaded', () => {
-  router('signinPage')
+
+  Router.use('/messenger', ChatPage)
+    .use('/signin', SigninPage)
+    .use('/signup', SignupPage)
+    .use('/errorPage', ErrorPage)
+    .use('/settings', SettingsPage)
+    .start()
+  // Router.go('/settings')
+  Validation.activate()
 })

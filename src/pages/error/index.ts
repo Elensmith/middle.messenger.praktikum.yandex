@@ -1,14 +1,27 @@
-import Block from '../../components/utils/Block'
+import Block from '../../utils/Block'
 import tmpl from './error.tmpl'
 
-interface ErrorProps {
-  errorCode: number
-  errorText: string
-  onClick: () => void
-}
 export default class ErrorPage extends Block {
-  constructor(props: ErrorProps) {
-    super({ ...props })
+  constructor() {
+    super()
+    console.log(this.setProps, 'setProps')
+    this.setProps({
+      onClick: this.clickHandler.bind(this),
+      errorCode: this.setErrorCode.bind(this),
+      errorText: this.setErrorText.bind(this),
+    })
+  }
+
+  clickHandler() {
+    console.log('clickHandler ErrorPage')
+  }
+
+  setErrorText() {
+    return 'Ошибочка вышла'
+  }
+
+  setErrorCode() {
+    return 404
   }
 
   render() {

@@ -69,7 +69,7 @@ export default class Block {
     return true
   }
 
-  setProps = (nextProps: string) => {
+  setProps = (nextProps: any) => {
     if (!nextProps) {
       return
     }
@@ -133,17 +133,16 @@ export default class Block {
   }
 
   private _makePropsProxy(props: any = {}) {
-    // const self = this
+    const self = this
     return new Proxy(props, {
       get(target, prop: string) {
         const value = target[prop]
         return typeof value === 'function' ? value.bind(target) : value
       },
       set(target, prop: string, val) {
-        console.log('перехватываем запись свойства')
         const oldProps = { ...target }
         target[prop] = val
-        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target)
+        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target)
         return true
       },
       deleteProperty() {
@@ -174,6 +173,6 @@ export default class Block {
   }
 
   hide(): void {
-    this.getContent().style.display = 'none'
+    // this.getContent().style.display = 'none'
   }
 }

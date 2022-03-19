@@ -18,67 +18,83 @@ const METHODS = {
   POST: 'POST',
   DELETE: 'DELETE',
 }
+type OPTIONS = {
+  method: METHODS
+  data?: unknown
+}
+export default class HTTPTransport {
+  static API_URL = 'https://ya-praktikum.tech/api/v2'
 
-class HTTPTransport {
-  get = (url: string, options = {}) =>
-    this.request(url, { ...options, method: METHODS.GET })
+  protected endpoint: string
 
-  put = (url: string, options = {}) =>
-    this.request(url, { ...options, method: METHODS.PUT })
-
-  post = (url: string, options = {}) =>
-    this.request(url, { ...options, method: METHODS.POST })
-
-  delete = (url: string, options = {}) =>
-    this.request(url, { ...options, method: METHODS.DELETE })
-
-  setParams = (url: string, data: any) => {
-    if (data) {
-      return `${url}${this.queryStringify(data)}`
-    }
-    return ''
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`
   }
 
-  setHeaders = (xhr, headers) => {
-    if (headers) {
-      Object.keys(headers).forEach((key) => {
-        xhr.setRequestHeader(key, headers[key])
-      })
-    }
-  }
+  public get = (url: string, data = {}) =>
+    this.request(this.endpoint + url, { data, method: METHODS.GET })
 
-  queryStringify(params) {
-    console.log(params)
-    // Можно делать трансформацию GET-параметров в отдельной функции
-    // const qs = new URLSearchParams(data).toString();
-    const qs = Object.keys(params)
-      .map((key) => `${key}=${params[key]}`)
-      .join('&')
-    console.log(typeof qs)
-    return `?${qs}`
-  }
+  public put = (url: string, data = {}) =>
+    this.request(this.endpoint + url, { data, method: METHODS.PUT })
 
-  request = (url, options, timeout = 5000) => {
-    const { method, data, headers = {} } = options
+  public post = (url: string, data?: Record<string, unknown>) =>
+    this.request(this.endpoint + url, { data, method: METHODS.POST })
+
+  public delete = (url: string, data = {}) =>
+    this.request(this.endpoint + url, { data, method: METHODS.DELETE })
+
+  // setParams = (url: string, data: any) => {
+  //   if (data) {
+  //     return `${url}${this.queryStringify(data)}`
+  //   }
+  //   return ''
+  // }
+
+  // setHeaders = (xhr, headers) => {
+  //   if (headers) {
+  //     Object.keys(headers).forEach((key) => {
+  //       xhr.setRequestHeader(key, headers[key])
+  //     })
+  //   }
+  // }
+
+  // queryStringify(params) {
+  //   console.log(params)
+  //   const qs = Object.keys(params)
+  //     .map((key) => `${key}=${params[key]}`)
+  //     .join('&')
+  //   console.log(typeof qs)
+  //   return `?${qs}`
+  // }
+
+  request = (url: string, options: OPTIONS = { method: METHODS.GET }) => {
+    const { method, data } = options
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest()
-      if (method === METHODS.GET) {
-        url = this.setParams(url, data)
-      }
+      // if (method === METHODS.GET) {
+      //   url = this.setParams(url, data)
+      // }
       xhr.open(method, url)
-      xhr.timeout = timeout
-      this.setHeaders(xhr, headers)
-      xhr.onload = function () {
-        resolve(xhr)
+      // this.setHeaders(xhr, headers)
+      xhr.onreadystatechange = (e) => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status < 400) {
+            resolve(xhr.response)
+          } else {
+            reject(xhr.response)
+          }
+        }
       }
       xhr.onabort = reject
       xhr.onerror = reject
       xhr.ontimeout = reject
-
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.withCredentials = true
+      xhr.responseType = 'json'
       if (method === METHODS.GET || !data) {
         xhr.send()
       } else {
-        xhr.send(data)
+        xhr.send(JSON.stringify(data))
       }
     })
   }

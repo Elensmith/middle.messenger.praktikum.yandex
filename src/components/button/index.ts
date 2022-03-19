@@ -1,4 +1,4 @@
-import Block from '../utils/Block'
+import Block from '../../utils/Block'
 import tmpl from './button.tmpl'
 
 interface ButtonProps {

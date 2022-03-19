@@ -6,19 +6,20 @@ export default `
   <div class="user-form">
     <span class="avatar"></span>
     {{#if isNotEditable}}
-    <h3 class="user-name">{{userName}}</h3>
+      <h3 class="user-name">{{first_name}}</h3>
     {{/if}}
-    {{{Input labelText="Почта" classInput="input_main" valueData="useremail@yandex.ru" typeName="text" readonly="true"}}}
-    {{{Input labelText="Логин" classInput="input_main" valueData="ivanlogin" typeName="text" readonly="true"}}}
-    {{{Input labelText="Имя" classInput="input_main" valueData="Иван" typeName="text" readonly="true"}}}
-    {{{Input labelText="Фамилия" classInput="input_main" valueData="Иванов" typeName="text" readonly="true"}}}
-    {{{Input labelText="Имя пользователя" classInput="input_main" valueData="Иван" typeName="text" readonly="true"}}}
-    {{{Input labelText="Телефон" classInput="input_main" valueData="+7(123)1567890" typeName="text" readonly="true"}}}
+    {{{Input labelText="Почта" classInput="input_main" valueData=email typeName="text" }}}
+    {{{Input labelText="Логин" classInput="input_main" valueData=login typeName="text" }}}
+    {{{Input labelText="Имя" classInput="input_main" valueData=first_name typeName="text" }}}
+    {{{Input labelText="Фамилия" classInput="input_main" valueData=second_name typeName="text" }}}
+    {{{Input labelText="Имя пользователя" classInput="input_main" valueData=display_name typeName="text" }}}
+    {{{Input labelText="Телефон" classInput="input_main" valueData=phone typeName="text" }}}
     {{#if isNotEditable}}
-    {{{ Button title="Изменить данные" className="button_small" onClick=onClick }}}
-    {{{ Button title="Изменить пароль" className="button_small" onClick=onClick }}}
-    {{{ Button title="Выйти" className="button_small" onClick=logout }}}
-    {{{ Button title="Сохранить" className="button_large" onClick=logout }}}
+      {{{ Button title="Изменить данные" className="button_small" onClick=editUserData }}}
+      {{{ Button title="Изменить пароль" className="button_small" onClick=editUserPassword }}}
+      {{{ Button title="Выйти" className="button_small" onClick=logout }}}
+    {{else}}
+      {{{ Button title="Сохранить" className="button_large" onClick=saveUserData }}} 
     {{/if}}
   </div>
  </div>

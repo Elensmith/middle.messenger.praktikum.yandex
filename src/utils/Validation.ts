@@ -1,6 +1,6 @@
 import dictPattern from './validationDict'
 
-export default class Validation {
+class Validation {
   form: any | null
 
   inputBlock: any | null
@@ -15,16 +15,15 @@ export default class Validation {
     if (this.form === null) {
       this.form = document.querySelector('.new-message-box')
     }
-    // if (this.form !== null) {
-    this.inputBlock = this.form.querySelectorAll('.input')
-    this.inputBlock.forEach((input: any) => {
-      if (input.querySelector('input').name !== 'message') {
-        console.log(input, 'nput.name')
-        input.addEventListener('focus', this._focusHandler, true)
-        input.addEventListener('blur', this._blurHandler, true)
-      }
-    })
-    // }
+    if (this.form !== null) {
+      this.inputBlock = this.form.querySelectorAll('.input')
+      this.inputBlock.forEach((input: any) => {
+        if (input.querySelector('input').name !== 'message') {
+          input.addEventListener('focus', this._focusHandler, true)
+          input.addEventListener('blur', this._blurHandler, true)
+        }
+      })
+    }
   }
 
   _focusHandler(event: FocusEvent) {
@@ -42,7 +41,7 @@ export default class Validation {
     }
   }
 
-  submit(): boolean {
+  submit(): Record<string, unknown> {
     let isValid = false
     const objectData: any = {}
 
@@ -76,6 +75,11 @@ export default class Validation {
       }
       isValid = true
     }
-    return isValid
+    return {
+      isValid,
+      objectData,
+    }
   }
 }
+
+export default new Validation()

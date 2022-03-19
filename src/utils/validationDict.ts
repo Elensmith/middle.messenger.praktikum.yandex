@@ -1,3 +1,4 @@
+// const dictPattern: { string: { regexp: RegExp; errorText: string } } = {
 const dictPattern: any = {
   email: {
     regexp:

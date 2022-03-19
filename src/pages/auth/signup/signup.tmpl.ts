@@ -11,8 +11,8 @@ export default `
     {{{Input labelText="Телефон" classInput="input_main" typeName="text" inputName="phone" }}}
     {{{Input labelText="Пароль" classInput="input_main" typeName="password" inputName="password" }}}
     {{{Input labelText="Пароль (еще раз)" classInput="input_main" typeName="password" inputName="password1" }}}
-    {{{Button title="Зарегистрироваться" typeName="submit" className="button_large" onClick=submitBtn}}}
+    {{{Button title="Зарегистрироваться" typeName="submit" className="button_large" onClick=signUpClick}}}
   </form>
-  {{{Button title="Войти" className="button_small" onClick=authBtn }}}
+  {{{Button title="Войти" className="button_small" onClick=goSignIn }}}
 </div>
 `
