@@ -1,8 +1,8 @@
-import Block from '../../../utils/Block'
+import Block from '../../../utils/mainDOM/Block'
 import tmpl from './signup.tmpl'
-import Validation from '../../../utils/Validation'
-import Router from '../../../utils/Router'
-import AuthController from '../../../controllers/AuthController'
+import validation from '../../../utils/validation/Validation'
+import router from '../../../utils/router/Router'
+import authController from '../../../controllers/AuthController'
 import { SignupData } from '../../../api/apiInterfaces/authInterface'
 
 export default class SignupPage extends Block {
@@ -20,12 +20,12 @@ export default class SignupPage extends Block {
 
   async signUpClickHandler(e: PointerEvent) {
     e.preventDefault()
-    const validationRes = Validation.submit()
+    const validationRes = validation.submit()
     if (validationRes.isValid) {
       console.log(validationRes, 'isValid')
       // const data: Record<string, unknown> = {}
       try {
-        await AuthController.signUp(validationRes.objectData as SignupData)
+        await authController.signUp(validationRes.objectData as SignupData)
       } catch (err) {
         console.log(err)
       }
@@ -33,6 +33,6 @@ export default class SignupPage extends Block {
   }
 
   goSignInClickHandler() {
-    Router.go('/signin')
+    router.go('/signin')
   }
 }

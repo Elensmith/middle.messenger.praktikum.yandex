@@ -1,7 +1,7 @@
 import AuthAPI from '../api/AuthAPI'
 import { SignupData, SigninData } from '../api/apiInterfaces/authInterface'
 import store from '../utils/store/Store'
-import Router from '../utils/Router'
+import Router from '../utils/router/Router'
 
 class AuthController {
   private api: typeof AuthAPI
@@ -31,5 +31,5 @@ class AuthController {
     store.set('currentUser', userInfo)
   }
 }
-
-export default new AuthController()
+const authController = new AuthController()
+export default authController

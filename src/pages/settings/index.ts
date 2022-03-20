@@ -1,5 +1,5 @@
 import SettingsPage from './settings'
-import { withStore } from '../../utils/withStore'
+import { withStore } from '../../utils/store/withStore'
 
 const withUser = withStore((state) => ({ ...state.currentUser }))
 

@@ -4,7 +4,7 @@ import {
   UserEditProfile,
 } from '../api/apiInterfaces/userInterface'
 import store from '../utils/store/Store'
-// import Router from '../utils/Router'
+import validation from '../utils/validation/Validation'
 
 class UserController {
   private api: typeof UserAPI
@@ -13,9 +13,20 @@ class UserController {
     this.api = UserAPI
   }
 
-  async editProfile(data: UserEditProfile) {
-    const editedUserInfo = await this.api.editProfile(data)
-    store.set('currentUser', editedUserInfo)
+  async editProfile() {
+    const validationRes = validation.submit()
+    if (validationRes.isValid) {
+      try {
+        const editedUserInfo = await this.api.editProfile(
+          validationRes.objectData as UserEditProfile
+        )
+        store.set('currentUser', editedUserInfo)
+      } catch (err) {
+        throw new Error('no answer editProfile')
+      }
+    } else {
+      throw new Error('form data not valid')
+    }
   }
 
   async editPassword(data: UserEditPassword) {
@@ -26,4 +37,5 @@ class UserController {
   }
 }
 
-export default new UserController()
+const userController = new UserController()
+export default userController

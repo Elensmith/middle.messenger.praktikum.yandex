@@ -1,5 +1,5 @@
 import Route from './Route'
-import Block from './Block'
+import Block from '../mainDOM/Block'
 
 class Router {
   constructor(rootQuery: string) {
@@ -61,5 +61,5 @@ class Router {
     return this.routes.find((route) => route.match(pathname))
   }
 }
-
-export default new Router('#root')
+const router = new Router('#root')
+export default router

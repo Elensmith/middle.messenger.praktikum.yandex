@@ -1,18 +1,19 @@
-import Block from './Block'
-import renderDOM from './renderDOM'
+import Block from '../mainDOM/Block'
+import renderDOM from '../mainDOM/renderDOM'
+import isEqual from '../functions/isEqual'
 
 type Props = { rootQuery: string }
 
-function isEqual(lhs: string, rhs: string) {
-  return lhs === rhs
-}
-function render(query: string, block: Block) {
-  const root = document.querySelector(query)
-  if (root !== null) {
-    root.textContent = block.getContent()
-  }
-  return root
-}
+// function isEqual(lhs: string, rhs: string) {
+//   return lhs === rhs
+// }
+// function render(query: string, block: Block) {
+//   const root = document.querySelector(query)
+//   if (root !== null) {
+//     root.textContent = block.getContent()
+//   }
+//   return root
+// }
 
 export default class Route {
   private _pathname: string

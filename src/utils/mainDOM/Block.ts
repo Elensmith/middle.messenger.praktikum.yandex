@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid'
 import * as Handlebars from 'handlebars'
 import EventBus from './EventBus'
+import validation from '../validation/Validation'
 
 export default class Block {
   private static EVENTS = {
@@ -75,6 +76,7 @@ export default class Block {
     }
 
     Object.assign(this.props, nextProps)
+    validation.activate()
   }
 
   compile() {

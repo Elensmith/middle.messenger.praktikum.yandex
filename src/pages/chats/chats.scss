@@ -59,4 +59,22 @@
     flex-direction: row;
     height: 8%;
   }
+  .no-selected-chat {
+    display: flex;
+    text-align: center;
+    margin: auto;
+  }
+  .search-area {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+  }
+  .create-new-chat-btn {
+    cursor: pointer;
+    padding-left: 10px;
+
+    &:hover {
+      // padding: 30px;
+    }
+  }
 }

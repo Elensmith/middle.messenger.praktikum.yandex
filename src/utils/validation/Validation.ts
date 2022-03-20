@@ -1,9 +1,9 @@
 import dictPattern from './validationDict'
 
 class Validation {
-  form: any | null
+  form: HTMLElement | null
 
-  inputBlock: any | null
+  inputBlock: NodeList | null
 
   constructor() {
     this.activate = this.activate.bind(this)
@@ -11,13 +11,14 @@ class Validation {
   }
 
   activate() {
+    console.log('activate')
     this.form = document.querySelector('form')
     if (this.form === null) {
       this.form = document.querySelector('.new-message-box')
     }
     if (this.form !== null) {
       this.inputBlock = this.form.querySelectorAll('.input')
-      this.inputBlock.forEach((input: any) => {
+      this.inputBlock.forEach((input: HTMLInputElement) => {
         if (input.querySelector('input').name !== 'message') {
           input.addEventListener('focus', this._focusHandler, true)
           input.addEventListener('blur', this._blurHandler, true)
@@ -81,5 +82,5 @@ class Validation {
     }
   }
 }
-
-export default new Validation()
+const validation = new Validation()
+export default validation

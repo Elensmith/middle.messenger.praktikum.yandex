@@ -1,6 +1,6 @@
-import store, { StoreEvents, StateData } from './store/Store'
-import Block from './Block'
-import isEqual from './functions/isEqual'
+import store, { StoreEvents, StateData } from './Store'
+import Block from '../mainDOM/Block'
+import isEqual from '../functions/isEqual'
 
 export const withStore =
   (mapStateToProps: (state: StateData) => Record<string, unknown>) =>

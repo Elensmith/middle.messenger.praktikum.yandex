@@ -17,6 +17,10 @@ const dictPattern: any = {
     regexp: /^[A-Z][A-Za-zа-я]{3,19}$/,
     errorText: 'латиница или кириллица, первая буква заглавная',
   },
+  display_name: {
+    regexp: /^[A-Z][A-Za-zа-я]{3,19}$/,
+    errorText: 'латиница или кириллица, первая буква заглавная',
+  },
   phone: {
     regexp: /^[+]?[\d]{10,15}/,
     errorText: 'введите телефон',

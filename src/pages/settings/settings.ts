@@ -1,8 +1,9 @@
 import tmpl from './settings.tmpl'
-import Block from '../../utils/Block'
+import Block from '../../utils/mainDOM/Block'
 import { User } from '../../utils/store/interfases/userInterface'
-import Router from '../../utils/Router'
-import AuthController from '../../controllers/AuthController'
+import Router from '../../utils/router/Router'
+import authController from '../../controllers/AuthController'
+import userController from '../../controllers/UserController'
 
 interface SettingsProps extends User {
   isNotEditable: boolean
@@ -13,28 +14,29 @@ interface SettingsProps extends User {
   backToChat: () => void
 }
 export default class SettingsPage extends Block {
-  private inputs: any = []
+  private inputs: HTMLCollection
 
   constructor(props: SettingsProps, isNotEditable = true) {
     super({ ...props, isNotEditable })
     this.setReadonly()
     this.setProps({
-      backToChat: this.backToChatClickHandler.bind(this),
-      logout: this.logoutClickHandler.bind(this),
-      editUserData: this.editUserDataClickHandler.bind(this),
+      backToChat: this.backToChatHandler.bind(this),
+      logout: this.logoutHandler.bind(this),
+      editUserData: this.editUserDataHandler.bind(this),
+      saveUserData: this.saveUserDataHandler.bind(this),
     })
   }
 
   setReadonly() {
     setTimeout(() => {
       this.inputs = document.getElementsByTagName('input')
-      Array.from(this.inputs).forEach((input) => {
+      Array.from(this.inputs).forEach((input: HTMLInputElement) => {
         input.setAttribute('readonly', 'readonly')
       })
     }, 100)
   }
 
-  editUserDataClickHandler() {
+  editUserDataHandler() {
     this.removeReadonly()
     this.setProps({
       isNotEditable: false,
@@ -42,7 +44,7 @@ export default class SettingsPage extends Block {
   }
 
   removeReadonly() {
-    Array.from(this.inputs).forEach((input) => {
+    Array.from(this.inputs).forEach((input: HTMLInputElement) => {
       input.removeAttribute('readonly')
     })
   }
@@ -51,15 +53,27 @@ export default class SettingsPage extends Block {
     return tmpl
   }
 
-  async logoutClickHandler() {
+  async logoutHandler() {
     try {
-      await AuthController.logout()
+      await authController.logout()
     } catch (err) {
       console.log(err)
     }
   }
 
-  backToChatClickHandler() {
+  backToChatHandler() {
     Router.go('/messenger')
+  }
+
+  async saveUserDataHandler() {
+    try {
+      await userController.editProfile()
+      this.setProps({
+        isNotEditable: true,
+      })
+      this.setReadonly()
+    } catch (err) {
+      console.log(err)
+    }
   }
 }

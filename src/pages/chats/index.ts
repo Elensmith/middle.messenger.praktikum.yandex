@@ -1,20 +1,32 @@
-import Block from '../../utils/Block'
+import Block from '../../utils/mainDOM/Block'
 import tmpl from './chats.tmpl'
-import Router from '../../utils/Router'
+import router from '../../utils/router/Router'
 
 export default class ChatPage extends Block {
   constructor() {
     super()
     this.setProps({
-      goToSettings: this.goToSettingsClickHandler.bind(this),
-      // selectedUserName: 'Ira',
-      // selectedUserAvatar:
-      //   'https://kulturakumertau.ru/wp-content/uploads/3/f/4/3f47f7753e4c02145f5b3c66983ee127.jpeg',
+      goToSettings: this.goToSettingsHandler.bind(this),
+      createNewChat: this.createNewChatHandler.bind(this),
     })
+    this.setClickHandler()
   }
 
-  goToSettingsClickHandler() {
-    Router.go('/settings')
+  goToSettingsHandler() {
+    router.go('/settings')
+  }
+
+  setClickHandler() {
+    const waitContentLoad = setInterval(() => {
+      if (document.getElementById('create-new-chat-btn') !== null) {
+        clearInterval(waitContentLoad)
+        document.getElementById('create-new-chat-btn').addEventListener('click', this.createNewChatHandler)
+      }
+    }, 100)
+  }
+
+  createNewChatHandler() {
+    console.log('createNewChatHandler')
   }
 
   render() {

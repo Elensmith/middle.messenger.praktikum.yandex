@@ -1,4 +1,4 @@
-import EventBus from '../EventBus'
+import EventBus from '../mainDOM/EventBus'
 import set from '../functions/set'
 import { User } from './interfaces/userInterface'
 
