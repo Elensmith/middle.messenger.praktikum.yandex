@@ -9,7 +9,11 @@
     width: 30%;
     box-shadow: $box_shadow;
     border-radius: $border_radius;
+    overflow-y: scroll;
   }
+  // .messages-container__chats {
+  //   overflow-y: scroll;
+  // }
   .chat-area {
     display: flex;
     flex-direction: column;
@@ -64,6 +68,14 @@
     text-align: center;
     margin: auto;
   }
+  .chat-info {
+    display: none;
+    // display: flex;
+    flex-direction: column;
+    // justify-content: space-between;
+    width: 100%;
+    height: 100%;
+  }
   .search-area {
     display: flex;
     flex-direction: row;
@@ -76,5 +88,16 @@
     &:hover {
       // padding: 30px;
     }
+  }
+  .chat__menu {
+    position: absolute;
+    display: none;
+    right: 0;
+    top: 10%;
+    z-index: 10;
+    width: fit-content;
+    background-color: white;
+    box-shadow: $box_shadow;
+    border-radius: $border_radius;
   }
 }

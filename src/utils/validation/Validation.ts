@@ -1,30 +1,9 @@
 import dictPattern from './validationDict'
 
 class Validation {
-  form: HTMLElement | null
-
-  inputBlock: NodeList | null
-
-  constructor() {
-    this.activate = this.activate.bind(this)
-    this.submit = this.submit.bind(this)
-  }
-
-  activate() {
-    console.log('activate')
-    this.form = document.querySelector('form')
-    if (this.form === null) {
-      this.form = document.querySelector('.new-message-box')
-    }
-    if (this.form !== null) {
-      this.inputBlock = this.form.querySelectorAll('.input')
-      this.inputBlock.forEach((input: HTMLInputElement) => {
-        if (input.querySelector('input').name !== 'message') {
-          input.addEventListener('focus', this._focusHandler, true)
-          input.addEventListener('blur', this._blurHandler, true)
-        }
-      })
-    }
+  validateInput(input: HTMLInputElement) {
+    input.addEventListener('focus', this._focusHandler, true)
+    input.addEventListener('blur', this._blurHandler, true)
   }
 
   _focusHandler(event: FocusEvent) {
@@ -42,39 +21,41 @@ class Validation {
     }
   }
 
-  submit(): Record<string, unknown> {
+  submit(form: HTMLFormElement | HTMLElement): Record<string, unknown> {
+    const inputBlock: NodeList | null = form.querySelectorAll('.input')
     let isValid = false
     const objectData: any = {}
+    if (inputBlock !== null) {
+      inputBlock.forEach((i: any) => {
+        const el = i
+        const input = i.querySelector('input')
+        el.querySelector('.error').textContent = ''
+        const currInput = dictPattern[input.name]
+        const testInput = currInput.regexp.test(input.value)
 
-    this.inputBlock.forEach((i: any) => {
-      const el = i
-      const input = i.querySelector('input')
-      el.querySelector('.error').textContent = ''
-      const currInput = dictPattern[input.name]
-      const testInput = currInput.regexp.test(input.value)
-
-      if (!testInput) {
-        el.querySelector('.error').textContent = currInput.errorText
-      } else {
-        // eslint-disable-next-line no-lonely-if
-        if (input.name === 'password1') {
-          if (input.value !== objectData.password) {
-            el.querySelector('.error').textContent = 'пароль не совпадает'
+        if (!testInput) {
+          el.querySelector('.error').textContent = currInput.errorText
+        } else {
+          // eslint-disable-next-line no-lonely-if
+          if (input.name === 'password1') {
+            if (input.value !== objectData.password) {
+              el.querySelector('.error').textContent = 'пароль не совпадает'
+            } else {
+              objectData[input.name] = input.value
+            }
           } else {
             objectData[input.name] = input.value
           }
-        } else {
-          objectData[input.name] = input.value
         }
-      }
-    })
+      })
 
-    if (Object.keys(objectData).length === this.inputBlock.length) {
-      console.log(objectData, 'objectData')
-      if (objectData.password1) {
-        delete objectData.password1
+      if (Object.keys(objectData).length === inputBlock.length) {
+        console.log(objectData, 'objectData')
+        if (objectData.password1) {
+          delete objectData.password1
+        }
+        isValid = true
       }
-      isValid = true
     }
     return {
       isValid,

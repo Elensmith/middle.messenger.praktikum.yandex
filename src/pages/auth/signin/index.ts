@@ -2,7 +2,7 @@ import Block from '../../../utils/mainDOM/Block'
 import tmpl from './signin.tmpl'
 // import store, { StoreEvents } from '../../../'
 import validation from '../../../utils/validation/Validation'
-import Router from '../../../utils/router/Router'
+import router from '../../../utils/router/Router'
 import authController from '../../../controllers/AuthController'
 import { SigninData } from '../../../api/apiInterfaces/authInterface'
 
@@ -17,12 +17,12 @@ export default class SigninPage extends Block {
 
   async signInClickHandler(e: PointerEvent) {
     e.preventDefault()
-    console.log('dddddd')
-    const validationRes = validation.submit()
+    const form = document.querySelector('form')
+    const validationRes = validation.submit(form)
     if (validationRes.isValid) {
       try {
         await authController.signIn(validationRes.objectData as SigninData)
-        Router.go('/messenger')
+        router.go('/messenger')
       } catch (err) {
         console.log(err)
       }
@@ -30,7 +30,7 @@ export default class SigninPage extends Block {
   }
 
   goSignUpClickHandler() {
-    Router.go('/signup')
+    router.go('/signup')
   }
 
   render() {

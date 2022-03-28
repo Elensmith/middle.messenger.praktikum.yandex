@@ -2,6 +2,7 @@ import BaseAPI from './BaseAPI'
 import {
   UserEditProfile,
   UserEditPassword,
+  UserSearch,
 } from './apiInterfaces/userInterface'
 
 class UserAPI extends BaseAPI {
@@ -11,6 +12,10 @@ class UserAPI extends BaseAPI {
 
   editProfile(data: UserEditProfile): Promise<unknown> {
     return this.http.put('/profile', data)
+  }
+
+  userSearchByLogin(data: UserSearch) {
+    return this.http.post('/search', data)
   }
 
   editPassword(data: UserEditPassword): Promise<unknown> {

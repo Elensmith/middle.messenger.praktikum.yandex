@@ -20,7 +20,8 @@ export default class SignupPage extends Block {
 
   async signUpClickHandler(e: PointerEvent) {
     e.preventDefault()
-    const validationRes = validation.submit()
+    const form = document.querySelector('form')
+    const validationRes = validation.submit(form)
     if (validationRes.isValid) {
       console.log(validationRes, 'isValid')
       // const data: Record<string, unknown> = {}

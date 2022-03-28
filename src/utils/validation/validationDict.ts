@@ -39,6 +39,10 @@ const dictPattern: any = {
     regexp: /^(?!\s*$).+/,
     errorText: 'введите сообщение',
   },
+  search_message: {
+    regexp: /^[a-zа-я0-9-_]{3,20}$/i,
+    errorText: '',
+  },
 }
 
 export default dictPattern

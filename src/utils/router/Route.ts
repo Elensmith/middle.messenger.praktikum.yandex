@@ -4,17 +4,6 @@ import isEqual from '../functions/isEqual'
 
 type Props = { rootQuery: string }
 
-// function isEqual(lhs: string, rhs: string) {
-//   return lhs === rhs
-// }
-// function render(query: string, block: Block) {
-//   const root = document.querySelector(query)
-//   if (root !== null) {
-//     root.textContent = block.getContent()
-//   }
-//   return root
-// }
-
 export default class Route {
   private _pathname: string
 
@@ -40,7 +29,7 @@ export default class Route {
 
   leave() {
     if (this._block) {
-      this._block.hide()
+      this._block.getContent().remove()
     }
   }
 
@@ -51,10 +40,7 @@ export default class Route {
   render() {
     if (!this._block) {
       this._block = new this._blockClass()
-      // render(this._props.rootQuery, this._block)
-      // return
     }
     renderDOM('#root', this._block)
-    // this._block.show()
   }
 }

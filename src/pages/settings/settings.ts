@@ -1,7 +1,7 @@
 import tmpl from './settings.tmpl'
 import Block from '../../utils/mainDOM/Block'
 import { User } from '../../utils/store/interfases/userInterface'
-import Router from '../../utils/router/Router'
+import router from '../../utils/router/Router'
 import authController from '../../controllers/AuthController'
 import userController from '../../controllers/UserController'
 
@@ -62,7 +62,7 @@ export default class SettingsPage extends Block {
   }
 
   backToChatHandler() {
-    Router.go('/messenger')
+    router.go('/messenger')
   }
 
   async saveUserDataHandler() {

@@ -2,6 +2,7 @@ import UserAPI from '../api/UserAPI'
 import {
   UserEditPassword,
   UserEditProfile,
+  UserSearch,
 } from '../api/apiInterfaces/userInterface'
 import store from '../utils/store/Store'
 import validation from '../utils/validation/Validation'
@@ -14,7 +15,8 @@ class UserController {
   }
 
   async editProfile() {
-    const validationRes = validation.submit()
+    const form = document.querySelector('form')
+    const validationRes = validation.submit(form)
     if (validationRes.isValid) {
       try {
         const editedUserInfo = await this.api.editProfile(
@@ -27,6 +29,22 @@ class UserController {
     } else {
       throw new Error('form data not valid')
     }
+  }
+
+  async userSearchByLogin(data: UserSearch) {
+    // const form = document.querySelector('form')
+    // const validationRes = validation.submit(form)
+    // if (validationRes.isValid) {
+    try {
+      const userId = await this.api.userSearchByLogin(data as User)
+      console.log(userId)
+      store.set('userId', userId)
+    } catch (err) {
+      throw new Error('no answer userSearchByLogin')
+    }
+    // } else {
+    //   throw new Error('form data not valid')
+    // }
   }
 
   async editPassword(data: UserEditPassword) {

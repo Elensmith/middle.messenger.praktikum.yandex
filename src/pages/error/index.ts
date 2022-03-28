@@ -4,7 +4,6 @@ import tmpl from './error.tmpl'
 export default class ErrorPage extends Block {
   constructor() {
     super()
-    console.log(this.setProps, 'setProps')
     this.setProps({
       onClick: this.clickHandler.bind(this),
       errorCode: this.setErrorCode.bind(this),

@@ -1,35 +1,6 @@
-import Block from '../../utils/mainDOM/Block'
-import tmpl from './chats.tmpl'
-import router from '../../utils/router/Router'
+import ChatPage from './chats'
+import { withStore } from '../../utils/store/withStore'
 
-export default class ChatPage extends Block {
-  constructor() {
-    super()
-    this.setProps({
-      goToSettings: this.goToSettingsHandler.bind(this),
-      createNewChat: this.createNewChatHandler.bind(this),
-    })
-    this.setClickHandler()
-  }
+const withChats = withStore((state) => ({ ...state.currentChat }))
 
-  goToSettingsHandler() {
-    router.go('/settings')
-  }
-
-  setClickHandler() {
-    const waitContentLoad = setInterval(() => {
-      if (document.getElementById('create-new-chat-btn') !== null) {
-        clearInterval(waitContentLoad)
-        document.getElementById('create-new-chat-btn').addEventListener('click', this.createNewChatHandler)
-      }
-    }, 100)
-  }
-
-  createNewChatHandler() {
-    console.log('createNewChatHandler')
-  }
-
-  render() {
-    return tmpl
-  }
-}
+export default withChats(ChatPage)

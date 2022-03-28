@@ -3,6 +3,6 @@ export interface CreateChatData {
 }
 
 export interface AddUsersToChatData {
-  users: [number]
+  users?: [number]
   chatId: number
 }

@@ -9,7 +9,7 @@ export const withStore =
     return class extends Component {
       constructor(props: unknown) {
         state = mapStateToProps(store.getState())
-
+        console.log('eeee')
         super({ ...props, ...state })
         store.on(StoreEvents.Updated, () => {
           const newState = mapStateToProps(store.getState())

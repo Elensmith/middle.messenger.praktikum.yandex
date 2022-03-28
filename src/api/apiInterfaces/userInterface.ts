@@ -11,3 +11,7 @@ export interface UserEditPassword {
   oldPassword: string
   newPassword: string
 }
+
+export interface UserSearch {
+  login: string
+}

@@ -20,6 +20,14 @@ class ChatAPI extends BaseAPI {
   deleteUsersFromChat(data: AddUsersToChatData): Promise<unknown> {
     return this.http.delete('/users', data)
   }
+
+  deleteChat(data: AddUsersToChatData): Promise<unknown> {
+    return this.http.delete('/chats', data)
+  }
+
+  getChats() {
+    return this.http.get('/')
+  }
 }
 
 export default new ChatAPI()

@@ -43,6 +43,7 @@ export default class Block {
   private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this))
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
+    eventBus.on(Block.EVENTS.FLOW_CDM, this.componentDidMount.bind(this))
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
   }
@@ -56,6 +57,8 @@ export default class Block {
   private _componentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
   }
+
+  componentDidMount() {}
 
   private _componentDidUpdate(oldProps: string, newProps: string) {
     const response = this.componentDidUpdate(oldProps, newProps)
@@ -74,9 +77,8 @@ export default class Block {
     if (!nextProps) {
       return
     }
-
     Object.assign(this.props, nextProps)
-    validation.activate()
+    // validation.activate()
   }
 
   compile() {
@@ -175,6 +177,6 @@ export default class Block {
   }
 
   hide(): void {
-    // this.getContent().style.display = 'none'
+    this.getContent().style.display = 'none'
   }
 }

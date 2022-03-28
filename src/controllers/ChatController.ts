@@ -13,6 +13,7 @@ class ChatController {
 
   async createNewChat(data: CreateChatData) {
     await this.api.createNewChat(data)
+    this.getChats()
   }
 
   async addUsersToChat(data: AddUsersToChatData) {
@@ -25,26 +26,24 @@ class ChatController {
       throw new Error(response.reason)
     }
   }
-  // async signUp(data: SignupData) {
-  //   const response: any = await this.api.signUp(data)
-  //   if (response.reason) {
-  //     throw new Error(response.reason)
-  //   }
-  // }
 
-  // async signIn(data: SigninData) {
-  //   await this.api.signIn(data)
-  // }
+  async deleteChat(data: AddUsersToChatData) {
+    const response: BadRequestData | any = await this.api.deleteChat(data)
+    if (response.reason) {
+      throw new Error(response.reason)
+    }
+    this.getChats()
+  }
 
-  // async logout() {
-  //   await this.api.logout()
-  //   Router.go('/signin')
-  // }
-
-  // async getUserInfo() {
-  //   const userInfo = await this.api.getUserInfo()
-  //   store.set('currentUser', userInfo)
-  // }
+  async getChats() {
+    try {
+      const chats = await this.api.getChats()
+      console.log(chats, 'chats')
+      store.set('chats', chats)
+    } catch (err) {
+      throw new Error('no answer getChats')
+    }
+  }
 }
 const chatController = new ChatController()
 export default chatController

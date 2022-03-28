@@ -1,7 +1,7 @@
 import AuthAPI from '../api/AuthAPI'
 import { SignupData, SigninData } from '../api/apiInterfaces/authInterface'
 import store from '../utils/store/Store'
-import Router from '../utils/router/Router'
+import router from '../utils/router/Router'
 
 class AuthController {
   private api: typeof AuthAPI
@@ -23,7 +23,7 @@ class AuthController {
 
   async logout() {
     await this.api.logout()
-    Router.go('/signin')
+    router.go('/signin')
   }
 
   async getUserInfo() {
