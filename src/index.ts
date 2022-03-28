@@ -13,6 +13,8 @@ import authController from './controllers/AuthController'
 import ModalWithInput from './components/modalWindow/modalWithInput/index'
 import chatController from './controllers/ChatController'
 import ButtonWithIcon from './components/button/buttonWithIcon/index'
+import ChatHeader from './components/chat-header/index'
+import ChatList from './components/chat-list/index'
 
 document.addEventListener('DOMContentLoaded', async () => {
   registerComponent(Button, 'Button')
@@ -21,6 +23,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   registerComponent(Chat, 'Chat')
   registerComponent(ChatMessage, 'ChatMessage')
   registerComponent(ButtonWithIcon, 'ButtonWithIcon')
+  registerComponent(ChatHeader, 'ChatHeader')
+  registerComponent(ChatList, 'ChatList')
 
   try {
     await authController.getUserInfo()

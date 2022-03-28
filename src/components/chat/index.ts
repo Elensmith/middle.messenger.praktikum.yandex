@@ -10,19 +10,10 @@ function clickOnChatHandler(event: PointerEvent) {
   Array.from(allChats).forEach((chat) => {
     chat.removeAttribute('style')
   })
-  // this.chatSelected = !this.chatSelected
-  // console.log(this.chatSelected, 'this.chatSelected')
-  // if (this.chatSelected) {
+
   const currentChat = store.getState().chats.find((chat) => chat.id === Number(parent.id))
   store.set('currentChat', currentChat)
-  // this.setProps({
-  //   selectedUserName: currentChat.title,
-  // })
-  // Array.from(allChats).forEach((chat) => {
-  //   chat.removeAttribute('style')
-  // })
-  // this.chatSelected = !this.chatSelected
-  // }
+
   if (parent.hasAttribute('style')) {
     noSelectBlock.setAttribute('style', 'display: block')
     selected.setAttribute('style', 'display: none')

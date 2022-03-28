@@ -24,6 +24,9 @@ export default class SettingsPage extends Block {
       logout: this.logoutHandler.bind(this),
       editUserData: this.editUserDataHandler.bind(this),
       saveUserData: this.saveUserDataHandler.bind(this),
+      editUserPassword: this.editUserPasswordHandler.bind(this),
+      saveUserPassword: this.saveUserPasswordHandler.bind(this),
+      editUserAvatar: this.editUserAvatarHandler.bind(this),
     })
   }
 
@@ -40,6 +43,37 @@ export default class SettingsPage extends Block {
     this.removeReadonly()
     this.setProps({
       isNotEditable: false,
+    })
+  }
+
+  editUserAvatarHandler() {
+    this.setProps({
+      inputLabel: 'выберите файл',
+      modalTitle: 'Изменить аватар',
+      buttonName: 'Сохранить',
+    })
+    document.querySelector('.modal-window').setAttribute('style', 'display: flex')
+  }
+
+  async saveUserPasswordHandler() {
+    try {
+      await userController.editPassword()
+      this.setProps({
+        isNotEditable: true,
+        editPassword: false,
+      })
+      this.setReadonly()
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  editUserPasswordHandler() {
+    console.log('editUserPasswordHandler')
+    this.removeReadonly()
+    this.setProps({
+      editPassword: true,
+      // isNotEditable: false,
     })
   }
 

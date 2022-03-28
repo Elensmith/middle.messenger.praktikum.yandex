@@ -12,18 +12,13 @@ export default `
         {{{Input placeholderInfo="Поиск" classInput="input_search" type="text" inputName="search_message"}}}
         {{{ButtonWithIcon onClick=createNewChat iconSrc="${createNewChatIcon}" }}}
       </div>
-      {{#each chats}}
-        {{{Chat id=this.id avatar=this.avatar userName=this.title userAuthor="" newMessages=this.unread_count message=this.last_message messageArrivalTime=this.messageArrivalTime }}}
-      {{/each}}
+      {{{ChatList }}}
     </div>
     {{{ModalWithInput inputLabel=inputLabel buttonName=buttonName title=modalTitle saveClick=saveModalBtn modalWindowClose=modalWindowClose }}}
     <div class="chat-area">
       <div class="chat-info" id="chatInfo">
         <div class="selected-chat-user">
-          <div class="user-info-box">
-            <img class="avatar" src="{{selectedUserAvatar}}" alt="" />
-            <h4 class="user-name">{{selectedUserName}}</h4>
-          </div>
+          {{{ChatHeader }}}
           {{{ButtonWithIcon onClick=showMoreInfoMenu iconSrc="${moreInfo}" }}}
           <div class="chat__menu">
             {{{Button title="Добавить пользователя" className="button_menu" onClick=addUser }}}

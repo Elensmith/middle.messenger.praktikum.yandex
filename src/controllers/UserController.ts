@@ -47,10 +47,23 @@ class UserController {
     // }
   }
 
-  async editPassword(data: UserEditPassword) {
-    const response: any = await this.api.editPassword(data)
-    if (response.reason) {
-      throw new Error(response.reason)
+  async editPassword() {
+    const form = document.querySelector('form')
+    const validationRes = validation.submit(form)
+    console.log(validationRes, 'validationRes')
+    if (validationRes.isValid) {
+      try {
+        const data = {
+          oldPassword: validationRes.objectData.oldPassword,
+          newPassword: validationRes.objectData.password,
+        }
+        await this.api.editPassword(data as UserEditPassword)
+      } catch (err) {
+        alert('ошибка сохранения пароля')
+        throw new Error('no answer editProfile')
+      }
+    } else {
+      throw new Error('form data not valid')
     }
   }
 }

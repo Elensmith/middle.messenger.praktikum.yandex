@@ -9,16 +9,8 @@ export default class ChatPage extends Block {
   private chatSelected: boolean
 
   constructor() {
-    console.log()
     super()
     this.chatSelected = false
-    // this.loadChats()
-    // store.on(StoreEvents.Updated, () => {
-    //   // вызываем обновление компонента, передав данные из хранилища
-    //   this.setProps({
-    //     selectedUserName: "store.getState().currentChat.title",
-    //   })
-    // })
     this.setProps({
       goToSettings: this.goToSettingsHandler.bind(this),
       createNewChat: this.createNewChatHandler.bind(this),
@@ -31,7 +23,6 @@ export default class ChatPage extends Block {
       addUser: this.addUserHandler.bind(this),
       removeUser: this.removeUserHandler.bind(this),
       buttonName: 'Сохранить',
-      chats: store.getState().chats,
     })
   }
 
@@ -135,19 +126,7 @@ export default class ChatPage extends Block {
     const input = modal.querySelector('input')
     input.value = ''
     modal.setAttribute('style', 'display: none')
-    // this.loadChats()
   }
-
-  // loadChats() {
-  //   chatController.getChats()
-  //   const chatsInStore = store.getState()
-  //   setTimeout(() => {
-  //     console.log(chatsInStore.chats)
-  //     this.setProps({
-  //       chats: chatsInStore.chats,
-  //     })
-  //   }, 1000)
-  // }
 
   createNewChatHandler(e) {
     console.log('createNewChatHandler')
