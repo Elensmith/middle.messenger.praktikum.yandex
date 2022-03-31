@@ -14,6 +14,10 @@ class UserAPI extends BaseAPI {
     return this.http.put('/profile', data)
   }
 
+  editAvatar(data: File) {
+    return this.http.put('/profile/avatar', data)
+  }
+
   userSearchByLogin(data: UserSearch) {
     return this.http.post('/search', data)
   }

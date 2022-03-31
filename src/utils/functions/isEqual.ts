@@ -1,4 +1,5 @@
 import isArrayOrObject from './isArrayOrObject'
+
 export type PlainObject<T = unknown> = {
   [k in string]: T
 }

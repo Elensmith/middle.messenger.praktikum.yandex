@@ -25,6 +25,10 @@ const dictPattern: any = {
     regexp: /^[+]?[\d]{10,15}/,
     errorText: 'введите телефон',
   },
+  avatar: {
+    regexp: /^(?!\s*$).+/,
+    errorText: 'файл не выбран',
+  },
   password: {
     regexp: /^(?=.*[A-Za-zА-Яа-я])(?=.*\d)[А-Яа-яA-Za-z\d]{8,40}$/,
     errorText:

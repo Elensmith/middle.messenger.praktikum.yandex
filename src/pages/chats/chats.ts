@@ -42,6 +42,7 @@ export default class ChatPage extends Block {
   sendMessageHandler(event: PointerEvent) {
     event.preventDefault()
     console.log('sendMessageHandler')
+    chatController.sendMessage()
   }
 
   addContentToMessageHandler(event: PointerEvent) {
@@ -54,7 +55,9 @@ export default class ChatPage extends Block {
       inputLabel: 'логин',
       modalTitle: 'Добавить пользователя',
     })
-    document.querySelector('.modal-window').setAttribute('style', 'display: flex')
+    document
+      .querySelector('.modal-window')
+      .setAttribute('style', 'display: flex')
   }
 
   removeUserHandler() {
@@ -62,7 +65,9 @@ export default class ChatPage extends Block {
       inputLabel: 'логин',
       modalTitle: 'Удалить пользователя',
     })
-    document.querySelector('.modal-window').setAttribute('style', 'display: flex')
+    document
+      .querySelector('.modal-window')
+      .setAttribute('style', 'display: flex')
   }
 
   showMoreInfoMenuHandler(event: PointerEvent) {
@@ -103,9 +108,8 @@ export default class ChatPage extends Block {
         login: inputValue.title,
       }
       console.log(data, 'data')
-      userController.userSearchByLogin(data)
-      setTimeout(() => {
-        const userId = store.getState().userId
+      userController.userSearchByLogin(data).then(() => {
+        const { userId } = store.getState()
         console.log(userId, 'userId')
         if (userId) {
           const userToChat = {
@@ -115,7 +119,7 @@ export default class ChatPage extends Block {
           console.log(userToChat, 'userToChat')
           chatController.addUsersToChat(userToChat)
         }
-      }, 2000)
+      })
     }
     this.modalWindowCloseHandler(event)
   }
@@ -134,7 +138,9 @@ export default class ChatPage extends Block {
       inputLabel: 'название чата',
       modalTitle: 'Создать чат',
     })
-    document.querySelector('.modal-window').setAttribute('style', 'display: flex')
+    document
+      .querySelector('.modal-window')
+      .setAttribute('style', 'display: flex')
   }
 
   render() {

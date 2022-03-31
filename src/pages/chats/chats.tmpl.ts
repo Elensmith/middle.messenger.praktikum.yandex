@@ -27,11 +27,7 @@ export default `
           </div>
         </div>
         <div class="messages">
-          {{{ChatMessage className="chat-message" arrivedTime="10:40" messageContent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae nisi aperiam ipsa eligendi accusamus perspiciatis consequuntur excepturi deserunt labore? Sapiente aut ad natus excepturi explicabo dignissimos pariatur repellat atque! Eveniet.
-          "}}}
-          {{{ChatMessage className="chat-message" arrivedTime="10:45" messageContent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae nisi aperiam ipsa eligendi accusamus perspiciatis consequuntur excepturi deserunt labore?.
-          "}}}
-          {{{ChatMessage className="chat-message" arrivedTime="10:50" messageContent="" image="https://funart.pro/uploads/posts/2021-03/1617049917_2-p-oboi-kartinki-na-rabochii-stol-vesna-priro-3.jpg"}}}
+          {{{ChatMessagesComponent }}}
         </div>
         <div class="new-message-box">
           {{{ButtonWithIcon onClick=addContentToMessage iconSrc="${paperclip}" }}}

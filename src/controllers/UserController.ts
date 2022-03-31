@@ -47,9 +47,28 @@ class UserController {
     // }
   }
 
+  async editAvatar() {
+    const inputData = document.querySelector('div.modal-window input')
+    console.log(inputData.files[0], 'inputData')
+    // const validationRes = validation.submit(form)
+    // if (validationRes.isValid) {
+    const formData = new FormData()
+
+    formData.append('avatar', inputData.files[0])
+    console.log(formData, 'formData')
+    try {
+      await this.api.editAvatar(formData)
+    } catch (err) {
+      throw new Error('no answer editAvatar')
+    }
+    // } else {
+    //   throw new Error('form data not valid')
+    // }
+  }
+
   async editPassword() {
     const form = document.querySelector('form')
-    const validationRes = validation.submit(form)
+    const validationRe = validation.submit(form)
     console.log(validationRes, 'validationRes')
     if (validationRes.isValid) {
       try {

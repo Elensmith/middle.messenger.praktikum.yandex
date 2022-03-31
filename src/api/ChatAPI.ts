@@ -17,6 +17,10 @@ class ChatAPI extends BaseAPI {
     return this.http.put('/users', data)
   }
 
+  getChatToken(data: number): Promise<unknown> {
+    return this.http.post(`/token/${data}`)
+  }
+
   deleteUsersFromChat(data: AddUsersToChatData): Promise<unknown> {
     return this.http.delete('/users', data)
   }

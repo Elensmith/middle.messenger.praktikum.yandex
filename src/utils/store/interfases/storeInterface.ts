@@ -27,3 +27,15 @@ export interface Chats {
     content: string
   } | null
 }
+
+export interface ChatToken {
+  token: string
+}
+
+export interface ChatMessage {
+  content: string
+  type: string
+  time: string
+  user_id: number
+  id: number
+}

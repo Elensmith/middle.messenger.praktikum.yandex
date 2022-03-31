@@ -1,9 +1,10 @@
 import tmpl from './settings.tmpl'
 import Block from '../../utils/mainDOM/Block'
-import { User } from '../../utils/store/interfases/userInterface'
+import { User } from '../../utils/store/interfases/storeInterface'
 import router from '../../utils/router/Router'
 import authController from '../../controllers/AuthController'
 import userController from '../../controllers/UserController'
+import store from '../../utils/store/Store'
 
 interface SettingsProps extends User {
   isNotEditable: boolean
@@ -16,10 +17,14 @@ interface SettingsProps extends User {
 export default class SettingsPage extends Block {
   private inputs: HTMLCollection
 
+  url: string
+
   constructor(props: SettingsProps, isNotEditable = true) {
     super({ ...props, isNotEditable })
+    this.url = 'https://ya-praktikum.tech/api/v2/resources/'
     this.setReadonly()
     this.setProps({
+      avatar: `${this.url}${props.avatar}`,
       backToChat: this.backToChatHandler.bind(this),
       logout: this.logoutHandler.bind(this),
       editUserData: this.editUserDataHandler.bind(this),
@@ -27,6 +32,7 @@ export default class SettingsPage extends Block {
       editUserPassword: this.editUserPasswordHandler.bind(this),
       saveUserPassword: this.saveUserPasswordHandler.bind(this),
       editUserAvatar: this.editUserAvatarHandler.bind(this),
+      saveModalBtn: this.saveModalBtnHandler.bind(this),
     })
   }
 
@@ -48,11 +54,29 @@ export default class SettingsPage extends Block {
 
   editUserAvatarHandler() {
     this.setProps({
-      inputLabel: 'выберите файл',
+      inputLabel: '',
       modalTitle: 'Изменить аватар',
       buttonName: 'Сохранить',
     })
-    document.querySelector('.modal-window').setAttribute('style', 'display: flex')
+    const modal = document.querySelector('.modal-window')
+    modal?.setAttribute('style', 'display: flex')
+    modal?.querySelector('input')?.setAttribute('type', 'file')
+    modal?.querySelector('input')?.setAttribute('name', 'avatar')
+  }
+
+  async saveModalBtnHandler() {
+    try {
+      await userController.editAvatar()
+      const modal = document.querySelector('.modal-window')
+      modal?.setAttribute('style', 'display: none')
+      authController.getUserInfo().then(() => {
+        this.setProps({
+          avatar: `${this.url}${store.getState().currentUser.avatar}`,
+        })
+      })
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   async saveUserPasswordHandler() {

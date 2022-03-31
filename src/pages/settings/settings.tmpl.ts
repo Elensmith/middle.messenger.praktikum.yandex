@@ -5,7 +5,7 @@ export default `
   {{{ Button title="Назад" className="button_back-to-chat" onClick=backToChat }}}
   <div class="user-form">
     {{{ModalWithInput inputLabel=inputLabel buttonName=buttonName title=modalTitle saveClick=saveModalBtn modalWindowClose=modalWindowClose }}}
-    <img class="avatar" src="avatar" alt="" />
+    <img class="avatar" src={{avatar}} alt="" />
     {{#if isNotEditable}}
       <h3 class="user-name">{{first_name}}</h3>
     {{/if}}

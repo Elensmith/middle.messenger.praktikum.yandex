@@ -1,6 +1,11 @@
 import EventBus from '../mainDOM/EventBus'
 import set from '../functions/set'
-import { User, Chats } from './interfases/userInterface'
+import {
+  User,
+  Chats,
+  ChatToken,
+  ChatMessage,
+} from './interfases/storeInterface'
 
 export enum StoreEvents {
   Updated = 'updated',
@@ -11,6 +16,8 @@ export interface StateData {
   chats?: Chats
   currentChat?: Chats
   userId?: User
+  token?: ChatToken
+  messages?: ChatMessage[]
 }
 
 class Store extends EventBus {
