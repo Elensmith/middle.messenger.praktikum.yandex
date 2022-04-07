@@ -1,7 +1,6 @@
 import { nanoid } from 'nanoid'
 import * as Handlebars from 'handlebars'
 import EventBus from './EventBus'
-import validation from '../validation/Validation'
 
 export default class Block {
   private static EVENTS = {
@@ -34,7 +33,6 @@ export default class Block {
       props,
     }
     this.eventBus = () => eventBus
-    this.initChildren()
     this.props = this._makePropsProxy(props)
     this._registerEvents(eventBus)
     eventBus.emit(Block.EVENTS.INIT)
@@ -51,8 +49,6 @@ export default class Block {
   init() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM)
   }
-
-  initChildren() {}
 
   private _componentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
@@ -78,7 +74,6 @@ export default class Block {
       return
     }
     Object.assign(this.props, nextProps)
-    // validation.activate()
   }
 
   compile() {
@@ -146,6 +141,9 @@ export default class Block {
       set(target, prop: string, val) {
         const oldProps = { ...target }
         target[prop] = val
+        console.log(Block.EVENTS.FLOW_CDU, 'Block.EVENTS.FLOW_CDU')
+        console.log(oldProps, 'oldProps')
+        console.log(target, 'target')
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target)
         return true
       },

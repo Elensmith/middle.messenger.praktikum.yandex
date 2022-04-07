@@ -8,8 +8,10 @@
   padding: 15px;
   box-shadow: $box_shadow;
   border-radius: $border_radius;
-
-  .header {
-    margin: 5% auto;
-  }
+}
+.form__header {
+  text-align: center;
+}
+.form__button-devider {
+  height: 16px;
 }

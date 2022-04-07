@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // router.go('/messenger')
   }
   router
+    .use('/', ChatPage)
     .use('/settings', SettingsPage)
     .use('/messenger', ChatPage)
     .use('/signin', SigninPage)

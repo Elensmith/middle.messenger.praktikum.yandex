@@ -29,17 +29,17 @@ class Validation {
       inputBlock.forEach((i: any) => {
         const el = i
         const input = i.querySelector('input')
-        el.querySelector('.error').textContent = ''
+        el.querySelector('.input__error').textContent = ''
         const currInput = dictPattern[input.name]
         const testInput = currInput.regexp.test(input.value)
 
         if (!testInput) {
-          el.querySelector('.error').textContent = currInput.errorText
+          el.querySelector('.input__error').textContent = currInput.errorText
         } else {
           // eslint-disable-next-line no-lonely-if
           if (input.name === 'password1') {
             if (input.value !== objectData.password) {
-              el.querySelector('.error').textContent = 'пароль не совпадает'
+              el.querySelector('.input__error').textContent = 'пароль не совпадает'
             } else {
               objectData[input.name] = input.value
             }

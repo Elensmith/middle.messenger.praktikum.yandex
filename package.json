@@ -40,6 +40,8 @@
   },
   "dependencies": {
     "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
     "express": "^4.17.2",
     "handlebars": "^4.7.7",
     "jsdom": "^19.0.0",

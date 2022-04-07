@@ -6,7 +6,7 @@ interface InputProps {
   labelText: string
   classInput?: string
   inputName?: string
-  type?: string
+  typeName?: string
   valueData?: string
   error?: string
   // onBlur?: () => void

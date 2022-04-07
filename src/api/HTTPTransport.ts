@@ -1,17 +1,3 @@
-// function fetchWithRetry(url, options) {
-//   console.log(options.retries, 'options')
-
-//   return fetch(url).catch((err) => {
-//     if (tries <= 0) {
-//       return Promise.reject(err)
-//     }
-
-//     const b = {
-//       retries: options.retries - 1,
-//     }
-//     return fetchWithRetry(url, b)
-//   })
-// }
 const METHODS = {
   GET: 'GET',
   PUT: 'PUT',
@@ -43,39 +29,11 @@ export default class HTTPTransport {
   public delete = (url: string, data = {}) =>
     this.request(this.endpoint + url, { data, method: METHODS.DELETE })
 
-  // setParams = (url: string, data: any) => {
-  //   if (data) {
-  //     return `${url}${this.queryStringify(data)}`
-  //   }
-  //   return ''
-  // }
-
-  // setHeaders = (xhr, headers) => {
-  //   if (headers) {
-  //     Object.keys(headers).forEach((key) => {
-  //       xhr.setRequestHeader(key, headers[key])
-  //     })
-  //   }
-  // }
-
-  // queryStringify(params) {
-  //   console.log(params)
-  //   const qs = Object.keys(params)
-  //     .map((key) => `${key}=${params[key]}`)
-  //     .join('&')
-  //   console.log(typeof qs)
-  //   return `?${qs}`
-  // }
-
   request = (url: string, options: OPTIONS = { method: METHODS.GET }) => {
     const { method, data } = options
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest()
-      // if (method === METHODS.GET) {
-      //   url = this.setParams(url, data)
-      // }
       xhr.open(method, url)
-      // this.setHeaders(xhr, headers)
       xhr.onreadystatechange = (e) => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status < 400) {

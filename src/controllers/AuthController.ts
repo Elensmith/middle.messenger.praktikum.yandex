@@ -12,6 +12,8 @@ class AuthController {
 
   async signUp(data: SignupData) {
     const response: any = await this.api.signUp(data)
+    this.getUserInfo()
+    router.go('/messenger')
     if (response.reason) {
       throw new Error(response.reason)
     }

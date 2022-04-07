@@ -9,7 +9,7 @@ export default `
     <div class="messages-container">
       {{{Button title="Профиль" className="button_back-to-profile" onClick=goToSettings }}}
       <div class="search-area">
-        {{{Input placeholderInfo="Поиск" classInput="input_search" type="text" inputName="search_message"}}}
+        {{{Input classInput="input_search" typeName="text" inputName="search_message"}}}
         {{{ButtonWithIcon onClick=createNewChat iconSrc="${createNewChatIcon}" }}}
       </div>
       {{{ChatList }}}
@@ -31,7 +31,7 @@ export default `
         </div>
         <div class="new-message-box">
           {{{ButtonWithIcon onClick=addContentToMessage iconSrc="${paperclip}" }}}
-          {{{Input placeholderInfo="Сообщение" classInput="input_message" type="text" inputName="message"}}}
+          {{{Input classInput="input_message" typeName="text" inputName="message"}}}
           {{{ButtonWithIcon onClick=sendMessage iconSrc="${sendMessageIcon}" }}}
         </div>
       </div>

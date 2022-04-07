@@ -2,7 +2,6 @@ import Block from '../../utils/mainDOM/Block'
 import tmpl from './chat.tmpl'
 import store from '../../utils/store/Store'
 import chatController from '../../controllers/ChatController'
-// import Socket from '../../api/Socket'
 
 function clickOnChatHandler(event: PointerEvent) {
   const parent = event.target.closest('.chat')
@@ -23,17 +22,10 @@ function clickOnChatHandler(event: PointerEvent) {
     selected.setAttribute('style', 'display: none')
     parent.removeAttribute('style')
   } else {
-    // const data = {
-    //   chatId: store.getState().currentChat?.id,
-
-    // }
-    // new Socket(props)
     chatController.getChatToken()
-    getChatToken
     noSelectBlock.setAttribute('style', 'display: none')
     selected.setAttribute('style', 'display: flex')
     parent.setAttribute('style', 'background-color: #d2eef3')
-    // this.chatSelected = !this.chatSelected
   }
 }
 interface ChatProps {
@@ -58,9 +50,6 @@ export default class Chat extends Block {
         },
       },
     })
-    // this.setProps({
-    //   clickOnChat: this.clickOnChatHandler.bind(this),
-    // })
   }
 
   render(): string {
