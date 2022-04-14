@@ -16,6 +16,7 @@ import ButtonWithIcon from './components/button/buttonWithIcon/index'
 import ChatHeader from './components/chat-header/index'
 import ChatList from './components/chat-list/index'
 import ChatMessagesComponent from './components/chat-messages-component/index'
+import ErrorMessage from './components/form-error-message/index'
 
 document.addEventListener('DOMContentLoaded', async () => {
   registerComponent(Button, 'Button')
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   registerComponent(ChatHeader, 'ChatHeader')
   registerComponent(ChatList, 'ChatList')
   registerComponent(ChatMessagesComponent, 'ChatMessagesComponent')
+  registerComponent(ErrorMessage, 'ErrorMessage')
 
   try {
     await authController.getUserInfo()

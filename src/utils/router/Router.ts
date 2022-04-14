@@ -17,7 +17,12 @@ class Router {
 
   use(pathname: string, block: typeof Block) {
     const route = new Route(pathname, block, { rootQuery: this._rootQuery })
-    this.routes.push(route)
+    const isRouteExists: number = this.routes.findIndex(((item) => item._pathname === pathname))
+    if (isRouteExists !== -1) {
+      this.routes.splice(isRouteExists, 1, route)
+    } else {
+      this.routes.push(route)
+    }
     return this
   }
 

@@ -1,26 +1,30 @@
-// import { expect } from 'chai'
-// import EventBus from './EventBus'
+import { expect } from 'chai'
+import router from './Router'
+import Route from './Route'
+import Error from '../../pages/error/index'
 
-// let eventBus: EventBus
-// let event: string
+describe('router', () => {
+  it('router is singleton', () => {
+    expect(router).to.be.a('object')
+  })
 
-// describe('EventBus', () => {
-//   eventBus = new EventBus()
-//   function callback() {
-//     console.log('text')
-//   }
-//   function callback1() {
-//     console.log('text')
-//   }
+  it('router use add to array', () => {
+    router.use('/path', Error)
+    router.use('/path', Error)
+    expect(router.routes).to.have.length(1)
+  })
 
-//   beforeEach(() => {
-//     event = 'click'
-//   })
+  it('route instanceof Route', () => {
+    expect(router.routes[0]).to.be.an.instanceof(Route)
+  })
 
-//   it('on event types', () => {
-//     eventBus.on(event, callback)
-//     expect(event).to.be.a('string')
-//     expect(callback).to.be.a('function')
-//   })
+  it('router getRoute return route', () => {
+    router.use('/path', Error)
+    expect(router.getRoute('/path')).to.have.property('_pathname', '/path')
+  })
 
-// })
+  it('router getRoute return undefined', () => {
+    router.use('/path', Error)
+    expect(router.getRoute('/test')).to.be.an('undefined')
+  })
+})

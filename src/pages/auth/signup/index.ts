@@ -3,6 +3,7 @@ import tmpl from './signup.tmpl'
 import validation from '../../../utils/validation/Validation'
 import router from '../../../utils/router/Router'
 import authController from '../../../controllers/AuthController'
+import store from '../../../utils/store/Store'
 import { SignupData } from '../../../api/apiInterfaces/authInterface'
 
 export default class SignupPage extends Block {
@@ -29,6 +30,7 @@ export default class SignupPage extends Block {
         await authController.signUp(validationRes.objectData as SignupData)
       } catch (err) {
         console.log(err)
+        store.set('errorMessage', err.reason)
       }
     }
   }

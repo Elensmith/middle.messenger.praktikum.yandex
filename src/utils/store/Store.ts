@@ -5,6 +5,7 @@ import {
   Chats,
   ChatToken,
   ChatMessage,
+  ErrorMessage,
 } from './interfases/storeInterface'
 
 export enum StoreEvents {
@@ -18,6 +19,7 @@ export interface StateData {
   userId?: User
   token?: ChatToken
   messages?: ChatMessage[]
+  errorMessage?: ErrorMessage
 }
 
 class Store extends EventBus {

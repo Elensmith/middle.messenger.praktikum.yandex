@@ -39,3 +39,7 @@ export interface ChatMessage {
   user_id: number
   id: number
 }
+
+export interface ErrorMessage {
+  reason: string
+}

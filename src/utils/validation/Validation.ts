@@ -1,4 +1,5 @@
 import dictPattern from './validationDict'
+import store from '../store/Store'
 
 class Validation {
   validateInput(input: HTMLInputElement) {
@@ -9,6 +10,9 @@ class Validation {
   _focusHandler(event: FocusEvent) {
     const input: any = event.target
     input.nextElementSibling.textContent = ''
+    if (store.getState().errorMessage !== '') {
+      store.set('errorMessage', '')
+    }
   }
 
   _blurHandler(event: FocusEvent) {

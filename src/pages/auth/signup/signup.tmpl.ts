@@ -12,6 +12,7 @@ export default `
     {{{Input labelText="Пароль" classInput="input_main" typeName="password" inputName="password" }}}
     {{{Input labelText="Пароль (еще раз)" classInput="input_main" typeName="password" inputName="password1" }}}
     <div class="form__button-devider"></div>
+    {{{ErrorMessage }}}
     {{{Button title="Зарегистрироваться" typeName="submit" className="button_large" onClick=signUpClick}}}
   </form>
   {{{Button title="Войти" className="button_small" onClick=goSignIn }}}

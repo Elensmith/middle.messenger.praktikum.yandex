@@ -1,6 +1,6 @@
 import Block from '../../../utils/mainDOM/Block'
 import tmpl from './signin.tmpl'
-// import store, { StoreEvents } from '../../../'
+import store from '../../../utils/store/Store'
 import validation from '../../../utils/validation/Validation'
 import router from '../../../utils/router/Router'
 import authController from '../../../controllers/AuthController'
@@ -24,6 +24,10 @@ export default class SigninPage extends Block {
         await authController.signIn(validationRes.objectData as SigninData)
         router.go('/messenger')
       } catch (err) {
+        if (err.reason) {
+          store.set('errorMessage', err.reason)
+          console.log(err)
+        }
         console.log(err)
       }
     }
