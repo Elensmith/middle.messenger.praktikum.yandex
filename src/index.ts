@@ -1,113 +1,51 @@
-import Button from './components/button/index'
+import Button from './components/button/confirmButton/index'
 import Input from './components/input/index'
 import Chat from './components/chat/index'
 import ChatMessage from './components/chat-message'
 import ErrorPage from './pages/error/index'
-import ChatPage from './pages/chats'
+import ChatPage from './pages/chats/chats'
 import SignupPage from './pages/auth/signup'
-import SettingsPage from './pages/settings'
+import SettingsPage from './pages/settings/index'
 import SigninPage from './pages/auth/signin'
-import renderDOM from './components/utils/renderDOM'
-import registerComponent from './components/utils/registerComponent'
-// import user from './pages/settings/userData'
-import Validation from './components/utils/Validation'
+import registerComponent from './utils/mainDOM/registerComponent'
+import router from './utils/router/Router'
+import authController from './controllers/AuthController'
+import ModalWithInput from './components/modalWindow/modalWithInput/index'
+import chatController from './controllers/ChatController'
+import ButtonWithIcon from './components/button/buttonWithIcon/index'
+import ChatHeader from './components/chat-header/index'
+import ChatList from './components/chat-list/index'
+import ChatMessagesComponent from './components/chat-messages-component/index'
+import ErrorMessage from './components/form-error-message/index'
 
-registerComponent(Button, 'Button')
-registerComponent(Input, 'Input')
-registerComponent(Chat, 'Chat')
-registerComponent(ChatMessage, 'ChatMessage')
+document.addEventListener('DOMContentLoaded', async () => {
+  registerComponent(Button, 'Button')
+  registerComponent(ModalWithInput, 'ModalWithInput')
+  registerComponent(Input, 'Input')
+  registerComponent(Chat, 'Chat')
+  registerComponent(ChatMessage, 'ChatMessage')
+  registerComponent(ButtonWithIcon, 'ButtonWithIcon')
+  registerComponent(ChatHeader, 'ChatHeader')
+  registerComponent(ChatList, 'ChatList')
+  registerComponent(ChatMessagesComponent, 'ChatMessagesComponent')
+  registerComponent(ErrorMessage, 'ErrorMessage')
 
-const validate = new Validation()
-
-function router(page: string) {
-  // eslint-disable-next-line no-use-before-define
-  const PageInDict = dictPages[page].type
-  // eslint-disable-next-line no-use-before-define
-  const readyPage = new PageInDict({ ...dictPages[page].props })
-  renderDOM('#root', readyPage)
-  validate.activate()
-}
-
-// function addMessage() {
-//   const isValid = validate.submit()
-//   if (isValid) {
-//     const message = 'wedewdew'
-//     const newMessage = `{{{ChatMessage className="chat-message_right" arrivedTime="10:45" messageContent="${message}"}}}`
-//     document.querySelector('.messages').appendChild(newMessage)
-//   }
-// }
-
-const dictPages: any = {
-  chatPage: {
-    type: ChatPage,
-    props: {
-      avatar: 'string',
-      userName: 'string',
-      userAuthor: 'string',
-      message: 'string',
-      messageArrivalTime: 'string',
-      newMessages: 11,
-      selectedUserName: 'Ira',
-      selectedUserAvatar:
-        'https://kulturakumertau.ru/wp-content/uploads/3/f/4/3f47f7753e4c02145f5b3c66983ee127.jpeg',
-      onClick: () => {
-        router('settingsPage')
-      },
-      // sendMessage: () => {
-      //   addMessage()
-      // },
-    },
-  },
-  errorPage: {
-    type: ErrorPage,
-    props: {
-      errorCode: 404,
-      errorText: 'Ошибочка вышла',
-      onClick: () => {
-        router('chatPage')
-      },
-    },
-  },
-  signupPage: {
-    type: SignupPage,
-    props: {
-      submitBtn: submitFunc,
-      authBtn: () => {
-        router('signinPage')
-      },
-    },
-  },
-  signinPage: {
-    type: SigninPage,
-    props: {
-      login: () => {
-        router('signupPage')
-      },
-      onClick: submitFunc,
-    },
-  },
-  settingsPage: {
-    type: SettingsPage,
-    props: {
-      // user,
-      userName: 'Иван',
-      isNotEditable: true,
-      logout: () => {
-        router('signupPage')
-      },
-      backToChat: () => {
-        router('chatPage')
-      },
-    },
-  },
-}
-function submitFunc(event: PointerEvent) {
-  event.preventDefault()
-  const isValid = validate.submit()
-  if (isValid) {
-    router('chatPage')
+  try {
+    await authController.getUserInfo()
+  } catch (e) {
+    router.go('/signin')
   }
-}
-document.addEventListener('DOMContentLoaded', () => {
-  router('signinPage')
+  try {
+    await chatController.getChats()
+  } catch (e) {
+    // router.go('/messenger')
+  }
+  router
+    .use('/', ChatPage)
+    .use('/settings', SettingsPage)
+    .use('/messenger', ChatPage)
+    .use('/signin', SigninPage)
+    .use('/signup', SignupPage)
+    .use('/errorPage', ErrorPage)
+    .start()
 })

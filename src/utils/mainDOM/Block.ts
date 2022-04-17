@@ -33,7 +33,6 @@ export default class Block {
       props,
     }
     this.eventBus = () => eventBus
-    this.initChildren()
     this.props = this._makePropsProxy(props)
     this._registerEvents(eventBus)
     eventBus.emit(Block.EVENTS.INIT)
@@ -42,6 +41,7 @@ export default class Block {
   private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this))
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
+    eventBus.on(Block.EVENTS.FLOW_CDM, this.componentDidMount.bind(this))
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
   }
@@ -50,11 +50,11 @@ export default class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM)
   }
 
-  initChildren() {}
-
   private _componentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
   }
+
+  componentDidMount() {}
 
   private _componentDidUpdate(oldProps: string, newProps: string) {
     const response = this.componentDidUpdate(oldProps, newProps)
@@ -69,11 +69,10 @@ export default class Block {
     return true
   }
 
-  setProps = (nextProps: string) => {
+  setProps = (nextProps: any) => {
     if (!nextProps) {
       return
     }
-
     Object.assign(this.props, nextProps)
   }
 
@@ -133,17 +132,19 @@ export default class Block {
   }
 
   private _makePropsProxy(props: any = {}) {
-    // const self = this
+    const self = this
     return new Proxy(props, {
       get(target, prop: string) {
         const value = target[prop]
         return typeof value === 'function' ? value.bind(target) : value
       },
       set(target, prop: string, val) {
-        console.log('перехватываем запись свойства')
         const oldProps = { ...target }
         target[prop] = val
-        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target)
+        console.log(Block.EVENTS.FLOW_CDU, 'Block.EVENTS.FLOW_CDU')
+        console.log(oldProps, 'oldProps')
+        console.log(target, 'target')
+        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target)
         return true
       },
       deleteProperty() {

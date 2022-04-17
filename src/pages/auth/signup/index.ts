@@ -1,34 +1,41 @@
-import Block from '../../../components/utils/Block'
+import Block from '../../../utils/mainDOM/Block'
 import tmpl from './signup.tmpl'
+import validation from '../../../utils/validation/Validation'
+import router from '../../../utils/router/Router'
+import authController from '../../../controllers/AuthController'
+import store from '../../../utils/store/Store'
+import { SignupData } from '../../../api/apiInterfaces/authInterface'
 
-interface ChatProps {
-  submitBtn: () => void
-  authBtn: () => void
-}
 export default class SignupPage extends Block {
-  constructor({ ...props }: ChatProps) {
-    super(props)
-    // this.loadPage()
+  constructor() {
+    super()
+    this.setProps({
+      goSignIn: this.goSignInClickHandler.bind(this),
+      signUpClick: this.signUpClickHandler.bind(this),
+    })
   }
 
   render() {
     return tmpl
   }
 
-  // loadPage() {
-  //   const timer = setInterval(() => {
-  //     if (document.querySelector('form') !== null) {
-  //       this.submitFunc()
-  //       clearInterval(timer)
-  //     }
-  //   }, 10)
-  // }
+  async signUpClickHandler(e: PointerEvent) {
+    e.preventDefault()
+    const form = document.querySelector('form')
+    const validationRes = validation.submit(form)
+    if (validationRes.isValid) {
+      console.log(validationRes, 'isValid')
+      // const data: Record<string, unknown> = {}
+      try {
+        await authController.signUp(validationRes.objectData as SignupData)
+      } catch (err) {
+        console.log(err)
+        store.set('errorMessage', err.reason)
+      }
+    }
+  }
 
-  // submitFunc() {
-  //   console.log('submitFunc')
-  //   const form = document.querySelector('form')
-  //   const formSubmit = document.querySelectorAll('button.button_large')
-  //   formSubmit[0].disabled = true
-  //   formSubmit[0].className = 'button button_larg button_disabled'
-  // }
+  goSignInClickHandler() {
+    router.go('/signin')
+  }
 }

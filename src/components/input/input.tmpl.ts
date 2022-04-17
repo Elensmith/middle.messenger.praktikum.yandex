@@ -1,11 +1,11 @@
 import './input.scss'
 
 export default `<div class="input">
-  <label class="label">{{labelText}}</label>
-  {{#if readonly}}
-  <input class={{classInput}} name={{inputName}} type={{typeName}} value={{valueData}} autocomplete="on" readonly>
+  <label class="input__label">{{labelText}}</label>
+  {{#if valueData}}
+    <input class={{classInput}} name={{inputName}} type={{typeName}} value={{valueData}} />
   {{else}}
-  <input class={{classInput}} name={{inputName}} type={{typeName}} autocomplete="on" >
+    <input class={{classInput}} name={{inputName}} type={{typeName}} />
   {{/if}}
-  <span class="error">{{error}}</span>
+  <span class="input__error">{{error}}</span>
 </div>`

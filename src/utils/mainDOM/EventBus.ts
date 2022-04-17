@@ -11,7 +11,6 @@ export default class EventBus {
     if (!this.listeners[event]) {
       this.listeners[event] = []
     }
-
     this.listeners[event].push(callback)
   }
 
@@ -26,13 +25,12 @@ export default class EventBus {
   }
 
   emit(event: string, ...args: any) {
-    // console.log('emit')
-    // if (!this.listeners[event]) {
-    //   throw new Error(`Нет события: ${event}`)
-    // }
-
+    if (!this.listeners[event]) {
+      return
+    }
     this.listeners[event].forEach((listener) => {
       listener(...args)
+      // console.log(this.listeners, 'listener')
     })
   }
 }

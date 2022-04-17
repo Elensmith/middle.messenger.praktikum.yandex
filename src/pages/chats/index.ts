@@ -1,16 +1,6 @@
-import Block from '../../components/utils/Block'
-import tmpl from './chats.tmpl'
+import ChatPage from './chats'
+import { withStore } from '../../utils/store/withStore'
 
-interface ChatProps {
-  onClick?: () => void
-  sendMessage?: () => void
-}
-export default class ChatPage extends Block {
-  constructor({ ...props }: ChatProps) {
-    super(props)
-  }
+const withChats = withStore((state) => ({ proprrr: state.chats }))
 
-  render() {
-    return tmpl
-  }
-}
+export default withChats(ChatPage)

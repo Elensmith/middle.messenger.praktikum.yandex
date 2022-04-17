@@ -5,6 +5,7 @@
   flex-direction: row;
   height: 80px;
   border-top: 1px solid grey;
+  cursor: pointer;
 
   .box {
     display: flex;
@@ -47,6 +48,7 @@
   .message-from-user {
     font-weight: bold;
     font-size: 14px;
+    margin-right: 5px;
   }
   .new-messages-text {
     font-size: 12px;
