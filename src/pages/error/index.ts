@@ -6,8 +6,9 @@ export default class ErrorPage extends Block {
     super()
     this.setProps({
       onClick: this.clickHandler.bind(this),
-      errorCode: this.setErrorCode.bind(this),
+      // errorCode: this.setErrorCode.bind(this),
       errorText: this.setErrorText.bind(this),
+      errorCode: '404',
     })
   }
 
@@ -19,9 +20,9 @@ export default class ErrorPage extends Block {
     return 'Ошибочка вышла'
   }
 
-  setErrorCode() {
-    return 404
-  }
+  // setErrorCode() {
+  //   return 404
+  // }
 
   render() {
     return tmpl

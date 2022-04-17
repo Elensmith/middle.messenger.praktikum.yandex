@@ -32,9 +32,6 @@ class UserController {
   }
 
   async userSearchByLogin(data: UserSearch) {
-    // const form = document.querySelector('form')
-    // const validationRes = validation.submit(form)
-    // if (validationRes.isValid) {
     try {
       const userId = await this.api.userSearchByLogin(data as User)
       console.log(userId)
@@ -42,16 +39,11 @@ class UserController {
     } catch (err) {
       throw new Error('no answer userSearchByLogin')
     }
-    // } else {
-    //   throw new Error('form data not valid')
-    // }
   }
 
   async editAvatar() {
     const inputData = document.querySelector('div.modal-window input')
     console.log(inputData.files[0], 'inputData')
-    // const validationRes = validation.submit(form)
-    // if (validationRes.isValid) {
     const formData = new FormData()
 
     formData.append('avatar', inputData.files[0])
@@ -61,14 +53,11 @@ class UserController {
     } catch (err) {
       throw new Error('no answer editAvatar')
     }
-    // } else {
-    //   throw new Error('form data not valid')
-    // }
   }
 
   async editPassword() {
     const form = document.querySelector('form')
-    const validationRe = validation.submit(form)
+    const validationRes = validation.submit(form)
     console.log(validationRes, 'validationRes')
     if (validationRes.isValid) {
       try {
