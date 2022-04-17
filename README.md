@@ -13,7 +13,7 @@
 
 ### вот ссылка на пулл реквест -
 
-https://github.com/Elensmith/middle.messenger.praktikum.yandex/pull/3
+https://github.com/Elensmith/middle.messenger.praktikum.yandex/pull/4
 
 ### вот в netlify - zealous-mclean-2f46ae
 
