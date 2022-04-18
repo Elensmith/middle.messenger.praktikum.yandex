@@ -4,7 +4,7 @@ import {
   AddUsersToChatData,
 } from './apiInterfaces/chatInterface'
 
-class ChatAPI extends BaseAPI {
+export class ChatAPI extends BaseAPI {
   constructor() {
     super('/chats')
   }
@@ -33,5 +33,3 @@ class ChatAPI extends BaseAPI {
     return this.http.get('/')
   }
 }
-
-export default new ChatAPI()

@@ -26,7 +26,6 @@ export default class SigninPage extends Block {
       } catch (err) {
         if (err.reason) {
           store.set('errorMessage', err.reason)
-          console.log(err)
         }
         console.log(err)
       }

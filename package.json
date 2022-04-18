@@ -36,16 +36,17 @@
     "mocha": "^9.2.2",
     "parcel": "^2.3.1",
     "prettier": "2.5.1",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "jsdom": "^19.0.0",
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
+    "sass": "^1.49.7",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7"
+
   },
   "dependencies": {
-    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-typescript": "^7.16.7",
     "express": "^4.17.2",
     "handlebars": "^4.7.7",
-    "jsdom": "^19.0.0",
-    "nanoid": "^3.3.1",
-    "sass": "^1.49.7"
+    "nanoid": "^3.3.1"
   }
 }

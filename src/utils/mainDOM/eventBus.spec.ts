@@ -9,9 +9,6 @@ describe('EventBus', () => {
   function callback() {
     console.log('text')
   }
-  function callback1() {
-    console.log('text')
-  }
 
   beforeEach(() => {
     event = 'click'

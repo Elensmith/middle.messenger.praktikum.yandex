@@ -24,8 +24,6 @@ export default class SignupPage extends Block {
     const form = document.querySelector('form')
     const validationRes = validation.submit(form)
     if (validationRes.isValid) {
-      console.log(validationRes, 'isValid')
-      // const data: Record<string, unknown> = {}
       try {
         await authController.signUp(validationRes.objectData as SignupData)
       } catch (err) {

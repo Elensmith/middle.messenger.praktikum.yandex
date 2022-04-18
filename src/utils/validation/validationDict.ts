@@ -1,5 +1,4 @@
-// const dictPattern: { string: { regexp: RegExp; errorText: string } } = {
-const dictPattern: any = {
+const DICT_PATTERNS: any = {
   email: {
     regexp:
       /^([a-zA-Z0-9]+[-_.]*[a-zA-Z0-9]+|[a-zA-Z0-9]+)@[-a-zA-Z0-9]+\.[a-zA-Z.]{2,}$/,
@@ -54,4 +53,4 @@ const dictPattern: any = {
   },
 }
 
-export default dictPattern
+export default DICT_PATTERNS

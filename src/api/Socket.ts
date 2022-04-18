@@ -34,12 +34,6 @@ export default class Socket {
           type: 'get old',
         })
       )
-      // this.socket.send(
-      //   JSON.stringify({
-      //     content: 'Моё второе сообщение миру!',
-      //     type: 'message',
-      //   })
-      // )
     })
 
     this.socket.addEventListener('close', (event) => {
@@ -53,30 +47,31 @@ export default class Socket {
     })
 
     this.socket.addEventListener('message', (event) => {
-      const message = JSON.parse(event.data)
-      console.log('Получены данные', message)
+      const messages = JSON.parse(event.data)
+      console.log('Получены данные', messages)
       let oldMessages = store.getState().messages
-      if (oldMessages !== undefined) {
-        if (message.length > 0) {
-          message.forEach((el) => {
-            const isLoad = oldMessages?.some((m) => m.id === el.id)
+      if (oldMessages && messages.length > 0) {
+        if (messages.length > 0) {
+          messages.forEach((message) => {
+            const isLoad = oldMessages?.some(
+              (oldMessage) => oldMessage.id === message.id
+            )
             if (!isLoad) {
-              oldMessages?.push(el)
+              oldMessages?.push(message)
             }
           })
           oldMessages.sort(compare)
-        } else if (message.user_id) {
-          oldMessages?.push(message)
+        } else if (messages.user_id) {
+          oldMessages?.push(messages)
         }
       } else {
-        oldMessages = [...message.sort(compare)]
+        oldMessages = [...messages.sort(compare)]
       }
       store.set('messages', oldMessages)
-      console.log(store.getState().messages, 'store.getState().messages')
     })
 
     this.socket.addEventListener('error', (event) => {
-      console.log('Ошибка', event.message)
+      console.log('Ошибка', event.messages)
     })
   }
 }

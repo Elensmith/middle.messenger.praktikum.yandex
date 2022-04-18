@@ -1,4 +1,4 @@
-import dictPattern from './validationDict'
+import DICT_PATTERNS from './validationDict'
 import store from '../store/Store'
 
 class Validation {
@@ -17,33 +17,34 @@ class Validation {
 
   _blurHandler(event: FocusEvent) {
     const input: any = event.target
-    const currInput = dictPattern[input.name]
-    const testInput = currInput.regexp.test(input.value)
+    const currentInput = DICT_PATTERNS[input.name]
+    const isValidInput = currentInput.regexp.test(input.value)
 
-    if (!testInput) {
-      input.nextElementSibling.textContent = currInput.errorText
+    if (!isValidInput) {
+      input.nextElementSibling.textContent = currentInput.errorText
     }
   }
 
   submit(form: HTMLFormElement | HTMLElement): Record<string, unknown> {
-    const inputBlock: NodeList | null = form.querySelectorAll('.input')
+    const inputBlocks: NodeList | null = form.querySelectorAll('.input')
     let isValid = false
     const objectData: any = {}
-    if (inputBlock !== null) {
-      inputBlock.forEach((i: any) => {
-        const el = i
-        const input = i.querySelector('input')
-        el.querySelector('.input__error').textContent = ''
-        const currInput = dictPattern[input.name]
-        const testInput = currInput.regexp.test(input.value)
+    if (inputBlocks !== null) {
+      inputBlocks.forEach((inputBlock: any) => {
+        const input = inputBlock.querySelector('input')
+        inputBlock.querySelector('.input__error').textContent = ''
+        const currentInput = DICT_PATTERNS[input.name]
+        const isValidInput = currentInput.regexp.test(input.value)
 
-        if (!testInput) {
-          el.querySelector('.input__error').textContent = currInput.errorText
+        if (!isValidInput) {
+          inputBlock.querySelector('.input__error').textContent =
+            currentInput.errorText
         } else {
           // eslint-disable-next-line no-lonely-if
           if (input.name === 'password1') {
             if (input.value !== objectData.password) {
-              el.querySelector('.input__error').textContent = 'пароль не совпадает'
+              inputBlock.querySelector('.input__error').textContent =
+                'пароль не совпадает'
             } else {
               objectData[input.name] = input.value
             }
@@ -53,8 +54,7 @@ class Validation {
         }
       })
 
-      if (Object.keys(objectData).length === inputBlock.length) {
-        console.log(objectData, 'objectData')
+      if (Object.keys(objectData).length === inputBlocks.length) {
         if (objectData.password1) {
           delete objectData.password1
         }

@@ -141,9 +141,6 @@ export default class Block {
       set(target, prop: string, val) {
         const oldProps = { ...target }
         target[prop] = val
-        console.log(Block.EVENTS.FLOW_CDU, 'Block.EVENTS.FLOW_CDU')
-        console.log(oldProps, 'oldProps')
-        console.log(target, 'target')
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target)
         return true
       },

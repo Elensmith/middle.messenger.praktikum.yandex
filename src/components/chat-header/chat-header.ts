@@ -7,7 +7,6 @@ interface ChatHeaderProps {
 }
 export default class ChatHeader extends Block {
   constructor(props: ChatHeaderProps) {
-    console.log(props, 'props')
     super({ ...props })
   }
 

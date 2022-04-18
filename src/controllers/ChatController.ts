@@ -1,4 +1,4 @@
-import ChatAPI from '../api/ChatAPI'
+import { ChatAPI } from '../api/ChatAPI'
 import {
   CreateChatData,
   AddUsersToChatData,
@@ -15,7 +15,7 @@ class ChatController {
   private socket: typeof Socket
 
   constructor() {
-    this.api = ChatAPI
+    this.api = new ChatAPI()
     this.socket = Socket
   }
 
@@ -64,7 +64,6 @@ class ChatController {
         .getChatToken(data)
         .then((data) => {
           store.set('token', data.token)
-          console.log(data)
         })
         .then(() => {
           const data = {
@@ -93,7 +92,6 @@ class ChatController {
   async getChats() {
     try {
       const chats = await this.api.getChats()
-      // console.log(chats, 'chats')
       store.set('chats', chats)
     } catch (err) {
       throw new Error('no answer getChats')

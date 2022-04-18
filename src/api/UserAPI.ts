@@ -5,7 +5,7 @@ import {
   UserSearch,
 } from './apiInterfaces/userInterface'
 
-class UserAPI extends BaseAPI {
+export class UserAPI extends BaseAPI {
   constructor() {
     super('/user')
   }
@@ -27,4 +27,3 @@ class UserAPI extends BaseAPI {
   }
 }
 
-export default new UserAPI()

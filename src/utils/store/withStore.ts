@@ -14,7 +14,6 @@ export const withStore =
           const newState = mapStateToProps(store.getState())
 
           if (!isEqual(state, newState)) {
-            console.log('!isEqual')
             this.setProps({
               ...newState,
             })

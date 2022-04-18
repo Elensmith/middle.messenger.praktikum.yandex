@@ -30,7 +30,6 @@ export default class EventBus {
     }
     this.listeners[event].forEach((listener) => {
       listener(...args)
-      // console.log(this.listeners, 'listener')
     })
   }
 }

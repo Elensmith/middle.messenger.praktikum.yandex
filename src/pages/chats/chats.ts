@@ -32,7 +32,6 @@ export default class ChatPage extends Block {
 
   deleteChatHandler() {
     const chat = store.getState().currentChat
-    console.log(chat)
     const data = {
       chatId: chat.id,
     }
@@ -41,13 +40,11 @@ export default class ChatPage extends Block {
 
   sendMessageHandler(event: PointerEvent) {
     event.preventDefault()
-    console.log('sendMessageHandler')
     chatController.sendMessage()
   }
 
   addContentToMessageHandler(event: PointerEvent) {
     event.preventDefault()
-    console.log('addContentToMessageHandler')
   }
 
   addUserHandler() {
@@ -72,7 +69,6 @@ export default class ChatPage extends Block {
 
   showMoreInfoMenuHandler(event: PointerEvent) {
     event.preventDefault()
-    console.log('showMoreInfoMenuHandler')
     const chatMenu = document.querySelector('.chat__menu')
     if (chatMenu.hasAttribute('style')) {
       const value = chatMenu.getAttribute('style')
@@ -84,13 +80,9 @@ export default class ChatPage extends Block {
     } else {
       chatMenu.setAttribute('style', 'display: block')
     }
-    // setTimeout(() => {
-    // console.log(store.getState().currentChat, 'store.getState()')
-    // }, 1000)
   }
 
   saveModalBtnHander(event: PointerEvent) {
-    console.log('saveModalBtnHander')
     const modalTitle = document.querySelector('.modal-window h2')?.textContent
     const inputValue = {
       title: document.querySelector('.modal-window input').value,
@@ -98,25 +90,17 @@ export default class ChatPage extends Block {
     if (modalTitle === 'Создать чат') {
       chatController.createNewChat(inputValue)
     } else if (modalTitle === 'Удалить пользователя') {
-      // const data = {
-      //   users: [0],
-      //   chatId: store.getState().currentChat.id,
-      // }
     } else if (modalTitle === 'Добавить пользователя') {
-      console.log('wwww')
       const data = {
         login: inputValue.title,
       }
-      console.log(data, 'data')
       userController.userSearchByLogin(data).then(() => {
         const { userId } = store.getState()
-        console.log(userId, 'userId')
         if (userId) {
           const userToChat = {
             users: userId.map((el) => el.id),
             chatId: store.getState().currentChat.id,
           }
-          console.log(userToChat, 'userToChat')
           chatController.addUsersToChat(userToChat)
         }
       })
@@ -125,7 +109,6 @@ export default class ChatPage extends Block {
   }
 
   modalWindowCloseHandler(event: PointerEvent) {
-    console.log('modalWindowCloseHandler')
     const modal = event.target.closest('.modal-window')
     const input = modal.querySelector('input')
     input.value = ''
@@ -133,7 +116,6 @@ export default class ChatPage extends Block {
   }
 
   createNewChatHandler(e) {
-    console.log('createNewChatHandler')
     this.setProps({
       inputLabel: 'название чата',
       modalTitle: 'Создать чат',

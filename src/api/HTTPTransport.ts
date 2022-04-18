@@ -4,7 +4,7 @@ const METHODS = {
   POST: 'POST',
   DELETE: 'DELETE',
 }
-type OPTIONS = {
+type Options = {
   method: METHODS
   data?: unknown
 }
@@ -29,7 +29,7 @@ export default class HTTPTransport {
   public delete = (url: string, data = {}) =>
     this.request(this.endpoint + url, { data, method: METHODS.DELETE })
 
-  request = (url: string, options: OPTIONS = { method: METHODS.GET }) => {
+  request = (url: string, options: Options = { method: METHODS.GET }) => {
     const { method, data } = options
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest()

@@ -1,13 +1,12 @@
 import BaseAPI from './BaseAPI'
 import { SignupData, SigninData } from './apiInterfaces/authInterface'
 
-class AuthAPI extends BaseAPI {
+export class AuthAPI extends BaseAPI {
   constructor() {
     super('/auth')
   }
 
   signUp(data: SignupData): Promise<unknown> {
-    console.log(data, 'data')
     return this.http.post('/signup', data)
   }
 
@@ -23,5 +22,3 @@ class AuthAPI extends BaseAPI {
     return this.http.post('/logout')
   }
 }
-
-export default new AuthAPI()

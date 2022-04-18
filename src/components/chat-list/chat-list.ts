@@ -6,7 +6,6 @@ interface ChatListProps {
 }
 export default class ChatList extends Block {
   constructor(props: ChatListProps) {
-    console.log(props, 'props')
     super({ ...props })
   }
 

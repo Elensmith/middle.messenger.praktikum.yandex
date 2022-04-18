@@ -1,4 +1,4 @@
-import UserAPI from '../api/UserAPI'
+import { UserAPI } from '../api/UserAPI'
 import {
   UserEditPassword,
   UserEditProfile,
@@ -11,7 +11,7 @@ class UserController {
   private api: typeof UserAPI
 
   constructor() {
-    this.api = UserAPI
+    this.api = new UserAPI()
   }
 
   async editProfile() {
@@ -34,7 +34,6 @@ class UserController {
   async userSearchByLogin(data: UserSearch) {
     try {
       const userId = await this.api.userSearchByLogin(data as User)
-      console.log(userId)
       store.set('userId', userId)
     } catch (err) {
       throw new Error('no answer userSearchByLogin')
@@ -43,11 +42,9 @@ class UserController {
 
   async editAvatar() {
     const inputData = document.querySelector('div.modal-window input')
-    console.log(inputData.files[0], 'inputData')
     const formData = new FormData()
 
     formData.append('avatar', inputData.files[0])
-    console.log(formData, 'formData')
     try {
       await this.api.editAvatar(formData)
     } catch (err) {
@@ -58,7 +55,6 @@ class UserController {
   async editPassword() {
     const form = document.querySelector('form')
     const validationRes = validation.submit(form)
-    console.log(validationRes, 'validationRes')
     if (validationRes.isValid) {
       try {
         const data = {

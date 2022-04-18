@@ -18,7 +18,6 @@ export default class Input extends Block {
       ...props,
       events: {
         focusin: (event: PointerEvent) => {
-          console.log(event.target, 'event.target')
           if (!event.target.hasAttribute('readonly')) {
             validation.validateInput(event.target)
           }

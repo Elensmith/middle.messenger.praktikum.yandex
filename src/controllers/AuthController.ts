@@ -1,4 +1,4 @@
-import AuthAPI from '../api/AuthAPI'
+import { AuthAPI } from '../api/AuthAPI'
 import { SignupData, SigninData } from '../api/apiInterfaces/authInterface'
 import store from '../utils/store/Store'
 import router from '../utils/router/Router'
@@ -7,7 +7,7 @@ class AuthController {
   private api: typeof AuthAPI
 
   constructor() {
-    this.api = AuthAPI
+    this.api = new AuthAPI()
   }
 
   async signUp(data: SignupData) {

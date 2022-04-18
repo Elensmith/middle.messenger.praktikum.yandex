@@ -93,11 +93,9 @@ export default class SettingsPage extends Block {
   }
 
   editUserPasswordHandler() {
-    console.log('editUserPasswordHandler')
     this.removeReadonly()
     this.setProps({
       editPassword: true,
-      // isNotEditable: false,
     })
   }
 
