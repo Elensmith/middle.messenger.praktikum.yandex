@@ -9,20 +9,22 @@ export interface User {
   avatar: string
 }
 
+interface UserInChat {
+  first_name: string
+  second_name: string
+  avatar: string
+  email: string
+  login: string
+  phone: string
+}
+
 export interface Chats {
   id: number
   title: string
   avatar: string | null
   unread_count: number
   last_message: {
-    user: {
-      first_name: string
-      second_name: string
-      avatar: string
-      email: string
-      login: string
-      phone: string
-    }
+    user: UserInChat
     time: string
     content: string
   } | null

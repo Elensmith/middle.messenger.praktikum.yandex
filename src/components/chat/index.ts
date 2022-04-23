@@ -8,6 +8,7 @@ function clickOnChatHandler(event: PointerEvent) {
   const noSelectBlock = document.getElementById('messageNoSelect')
   const allChats = document.querySelectorAll('.chat')
   const selected = document.getElementById('chatInfo')
+
   Array.from(allChats).forEach((chat) => {
     chat.removeAttribute('style')
   })
@@ -16,16 +17,17 @@ function clickOnChatHandler(event: PointerEvent) {
     .getState()
     .chats.find((chat) => chat.id === Number(parent.id))
   store.set('currentChat', currentChat)
-
-  if (parent.hasAttribute('style')) {
-    noSelectBlock.setAttribute('style', 'display: block')
-    selected.setAttribute('style', 'display: none')
-    parent.removeAttribute('style')
-  } else {
-    chatController.getChatToken()
-    noSelectBlock.setAttribute('style', 'display: none')
-    selected.setAttribute('style', 'display: flex')
-    parent.setAttribute('style', 'background-color: #d2eef3')
+  if (noSelectBlock !== null && selected !== null) {
+    if (parent.hasAttribute('style')) {
+      noSelectBlock.setAttribute('style', 'display: block')
+      selected.setAttribute('style', 'display: none')
+      parent.removeAttribute('style')
+    } else {
+      chatController.getChatToken()
+      noSelectBlock.setAttribute('style', 'display: none')
+      selected.setAttribute('style', 'display: flex')
+      parent.setAttribute('style', 'background-color: #d2eef3')
+    }
   }
 }
 interface ChatProps {

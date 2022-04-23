@@ -60,22 +60,14 @@ class ChatController {
   async getChatToken() {
     try {
       const data: number = store.getState().currentChat.id
-      await this.api
-        .getChatToken(data)
-        .then((data) => {
-          store.set('token', data.token)
-        })
-        .then(() => {
-          const data = {
-            userId: store.getState().currentUser?.id,
-            chatId: store.getState().currentChat?.id,
-            token: store.getState().token,
-          }
-          this.socket = new Socket(data)
-        })
-        .catch((err) => {
-          throw new Error('no answer getChatToken')
-        })
+      await this.api.getChatToken(data)
+      store.set('token', data.token)
+      const dataReady = {
+        userId: store.getState().currentUser?.id,
+        chatId: store.getState().currentChat?.id,
+        token: store.getState().token,
+      }
+      this.socket = new Socket(dataReady)
     } catch (err) {
       throw new Error('no answer getChatToken')
     }

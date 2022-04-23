@@ -8,6 +8,7 @@ interface ModalProps {
   modalWindowClose?: () => void
   saveClick?: () => void
 }
+
 export default class ModalWithInput extends Block {
   constructor({ ...props }: ModalProps) {
     super(props)

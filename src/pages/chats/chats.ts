@@ -83,18 +83,24 @@ export default class ChatPage extends Block {
   }
 
   saveModalBtnHander(event: PointerEvent) {
-    const modalTitle = document.querySelector('.modal-window h2')?.textContent
+    let modalTitle: string = ''
+    let inputValueTitle: string = ''
+    const modal = document.querySelector('.modal-window h2')
+    if (modal !== null) modalTitle = modal.textContent
+    const modalInput = document.querySelector('.modal-window input')
+    if (modalInput !== null) inputValueTitle = modalInput.value
     const inputValue = {
-      title: document.querySelector('.modal-window input').value,
+      title: inputValueTitle,
     }
     if (modalTitle === 'Создать чат') {
       chatController.createNewChat(inputValue)
     } else if (modalTitle === 'Удалить пользователя') {
+      console.log('добавить удаление юзера ')
     } else if (modalTitle === 'Добавить пользователя') {
-      const data = {
+      const loginValue = {
         login: inputValue.title,
       }
-      userController.userSearchByLogin(data).then(() => {
+      userController.userSearchByLogin(loginValue).then(() => {
         const { userId } = store.getState()
         if (userId) {
           const userToChat = {

@@ -7,7 +7,7 @@ class Validation {
     input.addEventListener('blur', this._blurHandler, true)
   }
 
-  _focusHandler(event: FocusEvent) {
+  private _focusHandler(event: FocusEvent) {
     const input: any = event.target
     input.nextElementSibling.textContent = ''
     if (store.getState().errorMessage !== '') {
@@ -15,7 +15,7 @@ class Validation {
     }
   }
 
-  _blurHandler(event: FocusEvent) {
+  private _blurHandler(event: FocusEvent) {
     const input: any = event.target
     const currentInput = DICT_PATTERNS[input.name]
     const isValidInput = currentInput.regexp.test(input.value)
@@ -29,7 +29,7 @@ class Validation {
     const inputBlocks: NodeList | null = form.querySelectorAll('.input')
     let isValid = false
     const objectData: any = {}
-    if (inputBlocks !== null) {
+    if (inputBlocks.length > 0) {
       inputBlocks.forEach((inputBlock: any) => {
         const input = inputBlock.querySelector('input')
         inputBlock.querySelector('.input__error').textContent = ''

@@ -8,13 +8,8 @@ interface ButtonWithIconProps {
   iconSrc: string
 }
 export default class ButtonWithIcon extends Block {
-  constructor({
-    buttonClass,
-    iconClass,
-    iconSrc,
-    onClick,
-  }: ButtonWithIconProps) {
-    super({ buttonClass, iconClass, iconSrc, events: { click: onClick } })
+  constructor({ onClick, ...props }: ButtonWithIconProps) {
+    super({ ...props, events: { click: onClick } })
   }
 
   render(): string {
