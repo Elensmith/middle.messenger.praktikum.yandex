@@ -1,9 +1,9 @@
 import './chat.scss'
 
 export default `
-<div class="chat">
+<div id={{id}} class="chat" clickOnChat={{clickOnChat}}>
   <div class="box">
-    <img class="avatar" src="{{avatar}}" alt="user avatar" />
+    <img class="avatar" src="{{avatar}}" alt="" />
   </div>
   <div class="box box-message">
     <h4 class="title">{{userName}}</h4>

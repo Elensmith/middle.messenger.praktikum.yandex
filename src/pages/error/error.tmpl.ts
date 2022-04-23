@@ -1,4 +1,4 @@
-import './error.scss'
+// import './error.scss'
 
 export default `
 <div class="error-page">

@@ -1,4 +1,4 @@
-const dictPattern: any = {
+const DICT_PATTERNS: any = {
   email: {
     regexp:
       /^([a-zA-Z0-9]+[-_.]*[a-zA-Z0-9]+|[a-zA-Z0-9]+)@[-a-zA-Z0-9]+\.[a-zA-Z.]{2,}$/,
@@ -16,11 +16,24 @@ const dictPattern: any = {
     regexp: /^[A-Z][A-Za-zа-я]{3,19}$/,
     errorText: 'латиница или кириллица, первая буква заглавная',
   },
+  display_name: {
+    regexp: /^[A-Z][A-Za-zа-я]{3,19}$/,
+    errorText: 'латиница или кириллица, первая буква заглавная',
+  },
   phone: {
     regexp: /^[+]?[\d]{10,15}/,
     errorText: 'введите телефон',
   },
+  avatar: {
+    regexp: /^(?!\s*$).+/,
+    errorText: 'файл не выбран',
+  },
   password: {
+    regexp: /^(?=.*[A-Za-zА-Яа-я])(?=.*\d)[А-Яа-яA-Za-z\d]{8,40}$/,
+    errorText:
+      'от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',
+  },
+  oldPassword: {
     regexp: /^(?=.*[A-Za-zА-Яа-я])(?=.*\d)[А-Яа-яA-Za-z\d]{8,40}$/,
     errorText:
       'от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',
@@ -34,6 +47,10 @@ const dictPattern: any = {
     regexp: /^(?!\s*$).+/,
     errorText: 'введите сообщение',
   },
+  search_message: {
+    regexp: /^[a-zа-я0-9-_]{3,20}$/i,
+    errorText: '',
+  },
 }
 
-export default dictPattern
+export default DICT_PATTERNS

@@ -1,12 +1,13 @@
 @import '../../../main.scss';
 
 .chat-message {
-  max-width: 35vw;
-  width: fit-content;
+  width: 30vw;
+  // width: fit-content;
   background-color: lightgrey;
   border-radius: $border_radius;
   padding: 10px;
   margin: 10px;
+  align-self: start;
   position: relative;
 
   .arrived-time {
@@ -22,12 +23,14 @@
   }
 }
 .chat-message_right {
-  max-width: 35vw;
-  width: fit-content;
+  width: 30vw;
+  // width: fit-content;
+  color: white;
   background-color: teal;
   border-radius: $border_radius;
   padding: 10px;
   margin: 10px;
+  align-self: end;
   position: relative;
   .arrived-time {
     position: absolute;
