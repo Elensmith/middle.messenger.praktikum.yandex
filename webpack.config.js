@@ -1,16 +1,18 @@
 const path = require('path')
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
+  target: 'web',
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'middle.messenger.practikum.yandex.bundle.js',
+    filename: 'bundle.js',
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.ts', '.js', '.tsx'],
     alias: {
-      'handlebars' : 'handlebars/dist/handlebars.js',
+      handlebars: 'handlebars/dist/handlebars.js',
     },
   },
   module: {

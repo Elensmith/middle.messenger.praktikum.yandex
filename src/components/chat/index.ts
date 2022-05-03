@@ -23,6 +23,7 @@ function clickOnChatHandler(event: PointerEvent) {
       selected.setAttribute('style', 'display: none')
       parent.removeAttribute('style')
     } else {
+      store.set('messages', [])
       chatController.getChatToken()
       noSelectBlock.setAttribute('style', 'display: none')
       selected.setAttribute('style', 'display: flex')

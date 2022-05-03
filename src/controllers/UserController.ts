@@ -15,19 +15,21 @@ class UserController {
   }
 
   async editProfile() {
-    const form = document.querySelector('form')
-    const validationRes = validation.submit(form)
-    if (validationRes.isValid) {
-      try {
-        const editedUserInfo = await this.api.editProfile(
-          validationRes.objectData as UserEditProfile
-        )
-        store.set('currentUser', editedUserInfo)
-      } catch (err) {
-        throw new Error('no answer editProfile')
+    const form: HTMLFormElement | null = document.querySelector('#userSettings')
+    if (form !== null) {
+      const validationRes = validation.submit(form)
+      if (validationRes.isValid) {
+        try {
+          const editedUserInfo = await this.api.editProfile(
+            validationRes.objectData
+          )
+          store.set('currentUser', editedUserInfo)
+        } catch (err) {
+          throw new Error('no answer editProfile')
+        }
+      } else {
+        throw new Error('form data not valid')
       }
-    } else {
-      throw new Error('form data not valid')
     }
   }
 
@@ -53,21 +55,24 @@ class UserController {
   }
 
   async editPassword() {
-    const form = document.querySelector('form')
-    const validationRes = validation.submit(form)
-    if (validationRes.isValid) {
-      try {
-        const data = {
-          oldPassword: validationRes.objectData.oldPassword,
-          newPassword: validationRes.objectData.password,
+    let validationRes
+    const form = document.querySelector('#userSettings')
+    if (form !== null) {
+      validationRes = validation.submit(form)
+      if (validationRes.isValid) {
+        try {
+          const data = {
+            oldPassword: validationRes.objectData.oldPassword,
+            newPassword: validationRes.objectData.password,
+          }
+          await this.api.editPassword(data as UserEditPassword)
+        } catch (err) {
+          alert('ошибка сохранения пароля')
+          throw new Error('no answer editProfile')
         }
-        await this.api.editPassword(data as UserEditPassword)
-      } catch (err) {
-        alert('ошибка сохранения пароля')
-        throw new Error('no answer editProfile')
+      } else {
+        throw new Error('form data not valid')
       }
-    } else {
-      throw new Error('form data not valid')
     }
   }
 }

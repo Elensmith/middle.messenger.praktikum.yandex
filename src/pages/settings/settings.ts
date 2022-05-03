@@ -21,8 +21,9 @@ export default class SettingsPage extends Block {
 
   constructor(props: SettingsProps, isNotEditable = true) {
     super({ ...props, isNotEditable })
-    this.url = 'https://ya-praktikum.tech/api/v2/resources/'
+    this.url = 'https://ya-praktikum.tech/api/v2/resources'
     this.setReadonly()
+    console.log(`${this.url}${props.avatar}`, 'props.avatar')
     this.setProps({
       avatar: `${this.url}${props.avatar}`,
       backToChat: this.backToChatHandler.bind(this),

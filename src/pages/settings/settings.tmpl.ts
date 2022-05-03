@@ -9,7 +9,7 @@ export default `
     {{#if isNotEditable}}
       <h3 class="user-name">{{first_name}}</h3>
     {{/if}}
-    <form>
+    <form id="userSettings">
       {{#if editPassword}}
         {{{Input labelText="Старый пароль" classInput="input_main" typeName="password" inputName="oldPassword" }}}
         {{{Input labelText="Новый пароль" classInput="input_main" typeName="password" inputName="password" }}}

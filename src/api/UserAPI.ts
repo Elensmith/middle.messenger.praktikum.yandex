@@ -11,6 +11,7 @@ export class UserAPI extends BaseAPI {
   }
 
   editProfile(data: UserEditProfile): Promise<unknown> {
+    console.log(data, 'data')
     return this.http.put('/profile', data)
   }
 
@@ -26,4 +27,3 @@ export class UserAPI extends BaseAPI {
     return this.http.put('/password', data)
   }
 }
-
