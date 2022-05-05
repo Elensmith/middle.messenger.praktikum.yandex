@@ -9,6 +9,9 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/',
   },
+  devServer: {
+    historyApiFallback: true,
+  },
   resolve: {
     extensions: ['.ts', '.js', '.tsx'],
     alias: {

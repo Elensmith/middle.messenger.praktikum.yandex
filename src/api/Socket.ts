@@ -24,10 +24,6 @@ export default class Socket {
     this.socket.send(JSON.stringify(data))
   }
 
-  closeSocket() {
-    this.socket.close()
-  }
-
   setListeners() {
     this.socket.addEventListener('open', () => {
       console.log('Соединение установлено')
@@ -38,9 +34,6 @@ export default class Socket {
           type: 'get old',
         })
       )
-      // setInterval(() => {
-      //   this.socket.send('')
-      // }, 20000)
     })
 
     this.socket.addEventListener('close', (event) => {
@@ -57,10 +50,8 @@ export default class Socket {
       const messages = JSON.parse(event.data)
       console.log('Получены данные', messages)
       let oldMessages = store.getState().messages
-      if (oldMessages && messages.length > 1) {
-        console.log(1)
+      if (oldMessages && messages.length > 0) {
         if (messages.length > 0) {
-          console.log(2)
           messages.forEach((message) => {
             const isLoad = oldMessages?.some(
               (oldMessage) => oldMessage.id === message.id
@@ -71,13 +62,10 @@ export default class Socket {
           })
           oldMessages.sort(compare)
         } else if (messages.user_id) {
-          console.log(4)
           oldMessages?.push(messages)
         }
-      } else if (messages.length === 1 && messages.type !== 'error') {
-        console.log(3)
+      } else {
         oldMessages = [...oldMessages, messages]
-        // oldMessages = [...messages.sort(compare)]
       }
       store.set('messages', oldMessages)
     })

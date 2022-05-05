@@ -1,7 +1,6 @@
 import { UserAPI } from '../api/UserAPI'
 import {
   UserEditPassword,
-  UserEditProfile,
   UserSearch,
 } from '../api/apiInterfaces/userInterface'
 import store from '../utils/store/Store'
