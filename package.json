@@ -44,7 +44,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "5.5.0",
     "husky": "^7.0.4",
-    "image-webpack-loader": "^1.4.0",
+    "image-webpack-loader": "^8.1.0",
     "jsdom": "19.0.0",
     "mocha": "9.2.2",
     "parcel": "2.3.1",

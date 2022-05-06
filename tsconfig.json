@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "dist",
+    // "baseUrl": "src/",
     "target": "es2019",
     "declaration": false,
     "module": "commonjs",
@@ -10,5 +11,5 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noEmitOnError": true,
-  }
+  },
 } 
