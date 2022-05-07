@@ -1,6 +1,6 @@
 import DICT_PATTERNS from './validationDict'
 import store from '../store/Store'
-// import
+
 interface IsValid {
   isValid: boolean
   objectData: Record<string, unknown>
@@ -35,7 +35,6 @@ class Validation {
     const inputBlocks: NodeList | null = form.querySelectorAll('.input')
     let isValid = false
     const objectData: Record<string, unknown> = {}
-    // if (inputBlocks.length > 0) {
     inputBlocks.forEach((inputBlock: HTMLDivElement) => {
       const input = inputBlock.querySelector('input')
       if (input !== null) {
@@ -68,7 +67,6 @@ class Validation {
       }
       isValid = true
     }
-    // }
     return {
       isValid,
       objectData,

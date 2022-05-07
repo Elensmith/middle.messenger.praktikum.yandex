@@ -45,7 +45,9 @@ class ChatController {
           }
           await this._socket.sendMessage(data)
           const inputMessage = form.querySelector('input.input_message')
-          if (inputMessage !== null) inputMessage.value = ''
+          if (inputMessage !== null) {
+            inputMessage.value = ''
+          }
         } catch (err) {
           throw new Error('no answer sendMessage')
         }
@@ -70,12 +72,10 @@ class ChatController {
 
   async getChatToken() {
     try {
-      let data: number
-      let dataFrowWs: Token | undefined
       const currentChatData = store.getState().currentChat
       if (currentChatData) {
-        data = currentChatData.id
-        dataFrowWs = await this._api.getChatToken(data)
+        const data: number = currentChatData.id
+        const dataFrowWs: Token | undefined = await this._api.getChatToken(data)
         if (dataFrowWs) {
           store.set('token', dataFrowWs.token)
           const dataReady = {

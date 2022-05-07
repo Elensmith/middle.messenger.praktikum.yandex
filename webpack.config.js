@@ -35,14 +35,7 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [
-          // Creates `style` nodes from JS strings
-          'style-loader',
-          // Translates CSS into CommonJS
-          'css-loader',
-          // Compiles Sass to CSS
-          'sass-loader',
-        ],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|jpg|gif)$/i,
@@ -58,7 +51,7 @@ module.exports = {
       {
         test: /\.(png|jpg|gif|ico|svg)$/,
         use: [
-          'file-loader?name=./images/[name].[ext]', // указали папку, куда складывать изображения
+          'file-loader?name=./images/[name].[ext]',
           {
             loader: 'image-webpack-loader',
             options: {
@@ -66,7 +59,6 @@ module.exports = {
                 progressive: true,
                 quality: 65,
               },
-              // optipng.enabled: false will disable optipng
               optipng: {
                 enabled: false,
               },
@@ -77,7 +69,6 @@ module.exports = {
               gifsicle: {
                 interlaced: false,
               },
-              // the webp option will enable WEBP
               webp: {
                 quality: 75,
               },
