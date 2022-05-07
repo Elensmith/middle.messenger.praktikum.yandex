@@ -2,7 +2,7 @@ import Block from '../../utils/mainDOM/Block'
 import tmpl from './chats.tmpl'
 import router from '../../utils/router/Router'
 import chatController from '../../controllers/ChatController'
-import store, { StoreEvents } from '../../utils/store/Store'
+import store from '../../utils/store/Store'
 import userController from '../../controllers/UserController'
 
 export default class ChatPage extends Block {
@@ -27,6 +27,7 @@ export default class ChatPage extends Block {
   }
 
   goToSettingsHandler() {
+    store.set('messages', [])
     router.go('/settings')
   }
 
@@ -83,8 +84,8 @@ export default class ChatPage extends Block {
   }
 
   saveModalBtnHander(event: PointerEvent) {
-    let modalTitle: string = ''
-    let inputValueTitle: string = ''
+    let modalTitle = ''
+    let inputValueTitle = ''
     const modal = document.querySelector('.modal-window h2')
     if (modal !== null) modalTitle = modal.textContent
     const modalInput = document.querySelector('.modal-window input')

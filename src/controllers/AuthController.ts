@@ -4,14 +4,14 @@ import store from '../utils/store/Store'
 import router from '../utils/router/Router'
 
 class AuthController {
-  private api: typeof AuthAPI
+  private _api: typeof AuthAPI
 
   constructor() {
-    this.api = new AuthAPI()
+    this._api = new AuthAPI()
   }
 
   async signUp(data: SignupData) {
-    const response: any = await this.api.signUp(data)
+    const response: any = await this._api.signUp(data)
     this.getUserInfo()
     router.go('/messenger')
     if (response.reason) {
@@ -20,16 +20,16 @@ class AuthController {
   }
 
   async signIn(data: SigninData) {
-    await this.api.signIn(data)
+    await this._api.signIn(data)
   }
 
   async logout() {
-    await this.api.logout()
+    await this._api.logout()
     router.go('/signin')
   }
 
   async getUserInfo() {
-    const userInfo = await this.api.getUserInfo()
+    const userInfo = await this._api.getUserInfo()
     store.set('currentUser', userInfo)
   }
 }

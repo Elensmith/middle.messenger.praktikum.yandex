@@ -19,7 +19,7 @@ export interface StateData {
   userId?: User
   token?: ChatToken
   messages?: ChatMessage[]
-  errorMessage?: ErrorMessage
+  errorMessage?: ErrorMessage | ''
 }
 
 class Store extends EventBus {

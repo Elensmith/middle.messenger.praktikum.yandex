@@ -34,7 +34,8 @@ export default class HTTPTransport {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest()
       xhr.open(method, url)
-      xhr.onreadystatechange = (e) => {
+      xhr.withCredentials = true
+      xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status < 400) {
             resolve(xhr.response)
@@ -47,7 +48,6 @@ export default class HTTPTransport {
       xhr.onerror = reject
       xhr.ontimeout = reject
 
-      xhr.withCredentials = true
       xhr.responseType = 'json'
       if (method === METHODS.GET || !data) {
         xhr.setRequestHeader('Content-Type', 'application/json')

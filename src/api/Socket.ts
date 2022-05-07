@@ -3,8 +3,8 @@ import { compare } from '../utils/functions/compare'
 
 interface SocketData {
   token: string
-  chatId: number
-  userId: number
+  chatId?: number
+  userId?: number
 }
 
 export default class Socket {
@@ -65,7 +65,7 @@ export default class Socket {
           oldMessages?.push(messages)
         }
       } else {
-        oldMessages = [...messages.sort(compare)]
+        oldMessages = [...oldMessages, messages]
       }
       store.set('messages', oldMessages)
     })

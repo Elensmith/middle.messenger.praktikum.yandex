@@ -8,9 +8,6 @@ interface ChatMessageProps {
   image: string
   className?: string
   userId?: number
-  // events?: {
-  //   click?: () => void
-  // }
   onClick?: () => void
 }
 export default class ChatMessage extends Block {
