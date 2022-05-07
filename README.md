@@ -1,7 +1,6 @@
 ### Веб-приложение Чат
 
 ## Запуск:
-
 - npm run build - сборка
 - npm run dev - запуск в режиме разработки
 - npm run start - запуск в режиме разработки
@@ -16,8 +15,6 @@
 
 ### heroku
 https://messenger4123423.herokuapp.com/
-
-### netlify - zealous-mclean-2f46ae
 
 ### макет в фигме (вдохновление)
 
